@@ -168,7 +168,6 @@
       inset 0 1px 1px rgb(255 255 255 / 0.24);
   }
 
-
   /* Kartu restoran/makanan: saat hover naik selangkah dengan bayangan keras, foto zoom bertahap, tag "OPEN" muncul. */
   .px-card {
     --px-hard: var(--c-ink);
@@ -201,7 +200,11 @@
     transition:
       opacity 120ms steps(2, end),
       transform 120ms steps(2, end);
-    box-shadow: -2px 0 0 0 var(--c-heading), 2px 0 0 0 var(--c-heading), 0 -2px 0 0 var(--c-heading), 0 2px 0 0 var(--c-heading);
+    box-shadow:
+      -2px 0 0 0 var(--c-heading),
+      2px 0 0 0 var(--c-heading),
+      0 -2px 0 0 var(--c-heading),
+      0 2px 0 0 var(--c-heading);
   }
   .px-card:focus-within .px-go {
     opacity: 1;
@@ -404,10 +407,22 @@
     border-radius: 6px;
     background-color: var(--skeleton-a);
     background-image:
-      linear-gradient(45deg, var(--skeleton-b) 25%, transparent 25% 75%, var(--skeleton-b) 75%),
-      linear-gradient(45deg, var(--skeleton-b) 25%, transparent 25% 75%, var(--skeleton-b) 75%);
+      linear-gradient(
+        45deg,
+        var(--skeleton-b) 25%,
+        transparent 25% 75%,
+        var(--skeleton-b) 75%
+      ),
+      linear-gradient(
+        45deg,
+        var(--skeleton-b) 25%,
+        transparent 25% 75%,
+        var(--skeleton-b) 75%
+      );
     background-size: 8px 8px;
-    background-position: 0 0, 4px 4px;
+    background-position:
+      0 0,
+      4px 4px;
   }
   .px-skeleton::after {
     content: "";
@@ -474,7 +489,11 @@
   /* Bar navigasi di atas layar. */
   .route-progress {
     height: 4px;
-    background-image: repeating-linear-gradient(90deg, var(--c-leaf) 0 8px, var(--c-violet) 8px 16px);
+    background-image: repeating-linear-gradient(
+      90deg,
+      var(--c-leaf) 0 8px,
+      var(--c-violet) 8px 16px
+    );
     transform-origin: left;
   }
   .route-progress[data-state="run"] {
@@ -498,7 +517,12 @@
     background: linear-gradient(var(--sky-1), var(--sky-3));
   }
   .scene-sky {
-    background-image: linear-gradient(var(--sky-1), var(--sky-2) 40%, var(--sky-3) 75%, var(--sky-4));
+    background-image: linear-gradient(
+      var(--sky-1),
+      var(--sky-2) 40%,
+      var(--sky-3) 75%,
+      var(--sky-4)
+    );
   }
   .px-bar {
     background-image: linear-gradient(90deg, var(--c-leaf), var(--c-violet));

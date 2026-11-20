@@ -41,13 +41,19 @@ export default function FoodPage(props: PageProps<"/foods/[id]">) {
       <nav aria-label="Breadcrumb">
         <ol className="font-eyebrow flex flex-wrap items-center gap-x-2 text-xs uppercase">
           <li>
-            <Link href="/" className="inline-flex min-h-11 min-w-11 items-center hover:underline">
+            <Link
+              href="/"
+              className="inline-flex min-h-11 min-w-11 items-center hover:underline"
+            >
               Home
             </Link>
           </li>
           <li aria-hidden="true">/</li>
           <li>
-            <Link href="/foods" className="inline-flex min-h-11 min-w-11 items-center hover:underline">
+            <Link
+              href="/foods"
+              className="inline-flex min-h-11 min-w-11 items-center hover:underline"
+            >
               Foods
             </Link>
           </li>
@@ -100,7 +106,9 @@ async function Food({ params }: { params: Promise<{ id: string }> }) {
           />
         </div>
         <div>
-          <h1 className="text-[clamp(2.25rem,6vw+0.5rem,3.75rem)] leading-[1.05] text-balance">{food.name}</h1>
+          <h1 className="text-[clamp(2.25rem,6vw+0.5rem,3.75rem)] leading-[1.05] text-balance">
+            {food.name}
+          </h1>
           <p className="mt-5 flex flex-wrap gap-3">
             {food.category ? <Badge>{food.category}</Badge> : null}
             {food.area ? <Badge tone="kunyit">{food.area}</Badge> : null}

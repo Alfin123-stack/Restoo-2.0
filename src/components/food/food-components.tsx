@@ -18,9 +18,7 @@ export function FoodCategoryRail({ categories }: { categories: FoodCategory[] })
             <span className="relative block size-20">
               <PixelPhoto src={c.thumb} sizes="80px" cols={40} fit="contain" />
             </span>
-            <span className="font-eyebrow text-[12px] leading-4 uppercase">
-              {c.name}
-            </span>
+            <span className="font-eyebrow text-[12px] leading-4 uppercase">{c.name}</span>
           </Link>
         </li>
       ))}

@@ -97,7 +97,11 @@ export function DetailSkeleton() {
 /** Steaming bowl with a stepped progress bar: the page-level loading state. */
 export function PixelLoader({ label = "Cooking up results" }: { label?: string }) {
   return (
-    <div role="status" aria-live="polite" className="flex flex-col items-center gap-4 py-10">
+    <div
+      role="status"
+      aria-live="polite"
+      className="flex flex-col items-center gap-4 py-10"
+    >
       <div className="loader-bob">
         <Sprite name="bowl-steam" scale={5} fps={3} />
       </div>

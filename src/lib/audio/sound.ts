@@ -183,8 +183,18 @@ function tap(c: AudioContext, start: number, pitch: number, vol: number) {
 }
 
 const NOTE = {
-  C4: 261.63, D4: 293.66, E4: 329.63, G4: 392, A4: 440,
-  C5: 523.25, D5: 587.33, E5: 659.25, G5: 783.99, A5: 880, C6: 1046.5, E6: 1318.5,
+  C4: 261.63,
+  D4: 293.66,
+  E4: 329.63,
+  G4: 392,
+  A4: 440,
+  C5: 523.25,
+  D5: 587.33,
+  E5: 659.25,
+  G5: 783.99,
+  A5: 880,
+  C6: 1046.5,
+  E6: 1318.5,
 };
 
 export type Sfx = "click" | "save" | "tick" | "win" | "toggle";
@@ -217,7 +227,17 @@ export function sfx(name: Sfx) {
 }
 
 /* ---- Background music: slow and warm. Soft chords underneath, a kalimba melody wandering on top. ---- */
-const SCALE = [NOTE.C4, NOTE.D4, NOTE.E4, NOTE.G4, NOTE.A4, NOTE.C5, NOTE.D5, NOTE.E5, NOTE.G5];
+const SCALE = [
+  NOTE.C4,
+  NOTE.D4,
+  NOTE.E4,
+  NOTE.G4,
+  NOTE.A4,
+  NOTE.C5,
+  NOTE.D5,
+  NOTE.E5,
+  NOTE.G5,
+];
 // C - Am - F - G, each held for 16 steps. [bass, pad notes]
 const CHORDS: [number, number[]][] = [
   [65.41, [130.81, 196, 261.63, 329.63]],
@@ -252,7 +272,10 @@ function startMusic() {
       }
       // The melody walks up and down the scale, resting about a third of the time.
       if (step % 2 === 0 ? Math.random() < 0.8 : Math.random() < 0.35) {
-        pos = Math.min(SCALE.length - 1, Math.max(0, pos + Math.round((Math.random() - 0.5) * 4)));
+        pos = Math.min(
+          SCALE.length - 1,
+          Math.max(0, pos + Math.round((Math.random() - 0.5) * 4)),
+        );
         pluck(ctx, SCALE[pos]!, nextTime, 1.6, 0.13, musicGain, 0.6);
       }
       nextTime += STEP;

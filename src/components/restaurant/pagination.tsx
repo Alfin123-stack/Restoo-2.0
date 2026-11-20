@@ -42,10 +42,7 @@ export function Pagination({
           Previous
         </Link>
       ) : null}
-      <span
-        className="font-eyebrow text-xs uppercase"
-        aria-current="page"
-      >
+      <span className="font-eyebrow text-xs uppercase" aria-current="page">
         Page {page} of {pageCount}
       </span>
       {page < pageCount ? (

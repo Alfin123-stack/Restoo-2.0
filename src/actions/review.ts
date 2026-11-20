@@ -56,7 +56,11 @@ export async function submitReview(
   const name = clean(parsed.data.name);
   const comment = clean(parsed.data.comment);
   if (name.length < 2 || comment.length < 5) {
-    return { status: "error", message: "Please remove characters like < and > from your review.", values };
+    return {
+      status: "error",
+      message: "Please remove characters like < and > from your review.",
+      values,
+    };
   }
 
   const moderation = await moderateReview(`${name}\n${comment}`);

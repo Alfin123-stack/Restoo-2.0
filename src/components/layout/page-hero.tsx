@@ -23,7 +23,9 @@ export function PageHero({
           narrow ? "max-w-3xl" : "max-w-6xl",
         )}
       >
-        {eyebrow ? <p className="font-eyebrow text-terong-500 text-xs">{eyebrow}</p> : null}
+        {eyebrow ? (
+          <p className="font-eyebrow text-terong-500 text-xs">{eyebrow}</p>
+        ) : null}
         <h1
           className={cn(
             eyebrow && "mt-3",
@@ -33,7 +35,9 @@ export function PageHero({
           {title}
         </h1>
         {children ? (
-          <div className="text-terong-700 mt-4 max-w-xl text-base leading-[1.4]">{children}</div>
+          <div className="text-terong-700 mt-4 max-w-xl text-base leading-[1.4]">
+            {children}
+          </div>
         ) : null}
       </div>
     </section>

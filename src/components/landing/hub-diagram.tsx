@@ -21,8 +21,16 @@ export function HubDiagram() {
     return { label, x: 50 + RX * Math.cos(a), y: 50 + RY * Math.sin(a) };
   });
   return (
-    <div className="relative aspect-[13/10] w-full" role="img" aria-label="Place types around the Restoo bowl">
-      <svg viewBox="0 0 130 100" className="absolute inset-0 size-full" aria-hidden="true">
+    <div
+      className="relative aspect-[13/10] w-full"
+      role="img"
+      aria-label="Place types around the Restoo bowl"
+    >
+      <svg
+        viewBox="0 0 130 100"
+        className="absolute inset-0 size-full"
+        aria-hidden="true"
+      >
         <ellipse
           cx="65"
           cy="50"

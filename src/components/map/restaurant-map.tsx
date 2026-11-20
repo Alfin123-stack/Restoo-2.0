@@ -139,8 +139,12 @@ export default function RestaurantMap({
             // Reuse a font the basemap style already ships (bold if there is one), so labels always render.
             const fonts = (map.getStyle().layers ?? [])
               .map((l) => (l.type === "symbol" ? l.layout?.["text-font"] : undefined))
-              .filter((f): f is string[] => Array.isArray(f) && f.every((x) => typeof x === "string"));
-            const countFont = fonts.find((f) => /bold/i.test(f.join(" "))) ?? fonts[0] ?? ["Noto Sans Bold"];
+              .filter(
+                (f): f is string[] =>
+                  Array.isArray(f) && f.every((x) => typeof x === "string"),
+              );
+            const countFont = fonts.find((f) => /bold/i.test(f.join(" "))) ??
+              fonts[0] ?? ["Noto Sans Bold"];
             map.addSource("pins", {
               type: "geojson",
               cluster: true,
@@ -186,7 +190,11 @@ export default function RestaurantMap({
                 "text-size": 14,
                 "text-allow-overlap": true,
               },
-              paint: { "text-color": "#ffffff", "text-halo-color": "#2a1b3d", "text-halo-width": 1.5 },
+              paint: {
+                "text-color": "#ffffff",
+                "text-halo-color": "#2a1b3d",
+                "text-halo-width": 1.5,
+              },
             });
             map.addLayer({
               id: "pin-points",
@@ -200,7 +208,8 @@ export default function RestaurantMap({
                 "circle-stroke-color": "#2a1b3d",
               },
             });
-            const src = () => map.getSource("pins") as import("maplibre-gl").GeoJSONSource;
+            const src = () =>
+              map.getSource("pins") as import("maplibre-gl").GeoJSONSource;
             map.on("click", "pin-clusters", async (e) => {
               const f = e.features?.[0];
               if (!f) return;
@@ -216,7 +225,12 @@ export default function RestaurantMap({
               const f = e.features?.[0];
               const pin = f ? bySlug.get(f.properties.slug as string) : undefined;
               if (!pin) return;
-              new maplibre.Popup({ offset: 14, focusAfterOpen: false, className: "restoo-popup", maxWidth: "260px" })
+              new maplibre.Popup({
+                offset: 14,
+                focusAfterOpen: false,
+                className: "restoo-popup",
+                maxWidth: "260px",
+              })
                 .setLngLat([pin.lng, pin.lat])
                 .setDOMContent(popupContent(pin))
                 .addTo(map);
@@ -231,7 +245,14 @@ export default function RestaurantMap({
             const el = pinElement(`Open ${pin.name}`);
             new maplibre.Marker({ element: el, anchor: "bottom" })
               .setLngLat([pin.lng, pin.lat])
-              .setPopup(new maplibre.Popup({ offset: 50, focusAfterOpen: false, className: "restoo-popup", maxWidth: "260px" }).setDOMContent(popupContent(pin)))
+              .setPopup(
+                new maplibre.Popup({
+                  offset: 50,
+                  focusAfterOpen: false,
+                  className: "restoo-popup",
+                  maxWidth: "260px",
+                }).setDOMContent(popupContent(pin)),
+              )
               .addTo(map);
           }
         }

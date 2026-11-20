@@ -57,9 +57,7 @@ export default function RestaurantsPage(props: PageProps<"/restaurants">) {
       <div className="mx-auto mt-10 max-w-6xl px-4 pb-12 sm:px-6">
         <div className="px-box [--px-bg:var(--color-kartu)]">
           <div className="p-5">
-            <h2 className="font-eyebrow mb-4 text-xs uppercase">
-              Ask Meong
-            </h2>
+            <h2 className="font-eyebrow mb-4 text-xs uppercase">Ask Meong</h2>
             <AskMeong aiOn={aiEnabled()} />
           </div>
           <div className="border-terong-900/30 border-t-2 p-5">
@@ -179,14 +177,9 @@ async function Results({
           role="status"
           className="px-box mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 p-4 [--px-bg:var(--color-pandan-100)]"
         >
-          <span className="font-eyebrow text-xs uppercase">
-            Meong understood
-          </span>
+          <span className="font-eyebrow text-xs uppercase">Meong understood</span>
           <span>{query.ask}</span>
-          <Link
-            href="/restaurants"
-            className="font-eyebrow text-xs uppercase underline"
-          >
+          <Link href="/restaurants" className="font-eyebrow text-xs uppercase underline">
             Clear
           </Link>
         </p>
@@ -219,10 +212,7 @@ async function Results({
         ) : (
           <>
             <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
-              <p
-                className="font-eyebrow text-xs uppercase"
-                role="status"
-              >
+              <p className="font-eyebrow text-xs uppercase" role="status">
                 {data.result.total}{" "}
                 {data.result.total === 1 ? "restaurant" : "restaurants"} found
                 {query.near ? ` · radius ${query.near.radiusKm} km` : ""}

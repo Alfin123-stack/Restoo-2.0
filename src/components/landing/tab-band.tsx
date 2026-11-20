@@ -21,7 +21,10 @@ function AskPanel() {
         <p className="text-terong-700">Filters applied from your sentence:</p>
         <div className="flex flex-wrap gap-2">
           {["Halal", "Open now", "Wi-Fi", "Price: cheap"].map((c) => (
-            <span key={c} className="px-flat bg-kunyit-400 text-terong-900 px-2.5 py-0.5 text-xs">
+            <span
+              key={c}
+              className="px-flat bg-kunyit-400 text-terong-900 px-2.5 py-0.5 text-xs"
+            >
               {c}
             </span>
           ))}
@@ -39,7 +42,10 @@ function GachaPanel() {
     <div className="flex flex-col items-center gap-5 p-6 sm:p-8">
       <div className="slot-window flex gap-3 p-3">
         {(["nasi-goreng", "bakso", "sate"] as const).map((f) => (
-          <div key={f} className="bg-raised flex size-20 items-center justify-center rounded-lg">
+          <div
+            key={f}
+            className="bg-raised flex size-20 items-center justify-center rounded-lg"
+          >
             <FoodIcon name={f} size={4} />
           </div>
         ))}
@@ -69,8 +75,8 @@ function MapPanel() {
       </div>
       <div className="max-w-xs space-y-3 text-sm">
         <p className="text-terong-700">
-          Pins for every place with coordinates. If the tiles can&apos;t load, a link opens the
-          spot in OpenStreetMap instead.
+          Pins for every place with coordinates. If the tiles can&apos;t load, a link
+          opens the spot in OpenStreetMap instead.
         </p>
         <Link href="/restaurants" className="btn btn-dark w-fit">
           Open the list
@@ -97,7 +103,11 @@ export function TabBand() {
 
   return (
     <div onPointerEnter={() => setAuto(false)} onFocus={() => setAuto(false)}>
-      <div role="tablist" aria-label="Features" className="mx-auto grid max-w-3xl gap-2 text-center sm:grid-cols-3 sm:gap-0">
+      <div
+        role="tablist"
+        aria-label="Features"
+        className="mx-auto grid max-w-3xl gap-2 text-center sm:grid-cols-3 sm:gap-0"
+      >
         {TABS.map((t, i) => (
           <button
             key={t.key}
@@ -112,7 +122,9 @@ export function TabBand() {
             }}
             className={cn(
               "min-h-11 px-4 py-2 text-[15px] leading-snug transition-colors sm:border-l sm:border-white/25 sm:first:border-l-0",
-              active === i ? "font-medium text-white" : "text-white/55 hover:text-white/80",
+              active === i
+                ? "font-medium text-white"
+                : "text-white/55 hover:text-white/80",
             )}
           >
             {t.label}
@@ -129,7 +141,13 @@ export function TabBand() {
             hidden={active !== i}
             className="min-h-[260px]"
           >
-            {t.key === "ask" ? <AskPanel /> : t.key === "gacha" ? <GachaPanel /> : <MapPanel />}
+            {t.key === "ask" ? (
+              <AskPanel />
+            ) : t.key === "gacha" ? (
+              <GachaPanel />
+            ) : (
+              <MapPanel />
+            )}
           </div>
         ))}
       </div>

@@ -28,7 +28,9 @@ function Logo() {
       aria-label="Restoo, go to home"
     >
       <BowlLogo scale={2} />
-      <span className="font-serif-mark text-[28px] leading-none max-[359px]:sr-only">Restoo</span>
+      <span className="font-serif-mark text-[28px] leading-none max-[359px]:sr-only">
+        Restoo
+      </span>
     </Link>
   );
 }
@@ -118,10 +120,7 @@ export function SiteHeader() {
           <ThemeToggle />
           <Link
             href="/restaurants"
-            className={cn(
-              "btn",
-              tone === "art" ? "btn-light" : "btn-dark",
-            )}
+            className={cn("btn", tone === "art" ? "btn-light" : "btn-dark")}
           >
             Find food
           </Link>

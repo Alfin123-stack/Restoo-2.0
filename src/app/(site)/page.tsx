@@ -61,8 +61,8 @@ export default function HomePage() {
               className="hero-in mt-5 max-w-[540px] text-base leading-[1.4] text-white/85"
               style={{ "--i": 1 } as React.CSSProperties}
             >
-              Start with what you&apos;re craving. Restoo shows what&apos;s open, sums up real
-              reviews, and keeps your favorites on your device, with no account.
+              Start with what you&apos;re craving. Restoo shows what&apos;s open, sums up
+              real reviews, and keeps your favorites on your device, with no account.
             </p>
             <div
               className="hero-in mt-6 flex flex-wrap gap-3"
@@ -76,15 +76,23 @@ export default function HomePage() {
               </Link>
             </div>
           </div>
-          <div className="absolute right-5 bottom-14 left-5 md:right-[7%] md:bottom-auto md:left-auto md:top-[40%] md:w-[300px]">
+          <div className="absolute right-5 bottom-14 left-5 md:top-[40%] md:right-[7%] md:bottom-auto md:left-auto md:w-[300px]">
             <HeroNotifications />
           </div>
         </div>
-        <PixelFringe edge="bottom" rows={14} seed={5} className="absolute inset-x-0 bottom-0 z-20" />
+        <PixelFringe
+          edge="bottom"
+          rows={14}
+          seed={5}
+          className="absolute inset-x-0 bottom-0 z-20"
+        />
       </section>
 
       {/* 2. Proof: real counts only */}
-      <section aria-label="Restoo in numbers" className="mx-auto max-w-[1100px] px-6 pt-6">
+      <section
+        aria-label="Restoo in numbers"
+        className="mx-auto max-w-[1100px] px-6 pt-6"
+      >
         <Suspense fallback={<div className="h-24" />}>
           <Stats />
         </Suspense>
@@ -105,7 +113,9 @@ export default function HomePage() {
           <div className={`bg-panel rounded-2xl p-4 sm:p-6 ${frame}`}>
             <HubDiagram />
           </div>
-          <div className={`bg-raised flex flex-col justify-center rounded-2xl p-5 sm:p-7 ${frame}`}>
+          <div
+            className={`bg-raised flex flex-col justify-center rounded-2xl p-5 sm:p-7 ${frame}`}
+          >
             <Eyebrow>Ask Meong</Eyebrow>
             <p className="text-heading mt-3 mb-5 text-xl leading-snug">
               Describe the place in your own words.
@@ -115,9 +125,18 @@ export default function HomePage() {
         </div>
         <dl className="mt-10 grid gap-6 text-sm sm:grid-cols-3">
           {[
-            ["Open now", "Hours are checked against the clock, so you only see what you can walk into."],
-            ["Real reviews", "Ratings and comments from people, with a short summary on each place."],
-            ["Stays with you", "Favorites and collections live on your device and open without internet."],
+            [
+              "Open now",
+              "Hours are checked against the clock, so you only see what you can walk into.",
+            ],
+            [
+              "Real reviews",
+              "Ratings and comments from people, with a short summary on each place.",
+            ],
+            [
+              "Stays with you",
+              "Favorites and collections live on your device and open without internet.",
+            ],
           ].map(([t, d]) => (
             <div key={t}>
               <dt className="text-heading font-medium">{t}</dt>
@@ -135,9 +154,21 @@ export default function HomePage() {
         b="Restoo narrows the list."
         body="Pick what matters: halal, wifi, outdoor seating, a price range. Filters combine, and the list updates with what is open."
         items={[
-          { index: "1.1", title: "Filter by what you need", body: "Halal, vegetarian, wifi, outdoor seating, delivery, reservations." },
-          { index: "1.2", title: "See only what is open", body: "Opening hours are read for the current time in the place's timezone." },
-          { index: "1.3", title: "Sort by rating or price", body: "Highest rated first, or the cheapest that is still good." },
+          {
+            index: "1.1",
+            title: "Filter by what you need",
+            body: "Halal, vegetarian, wifi, outdoor seating, delivery, reservations.",
+          },
+          {
+            index: "1.2",
+            title: "See only what is open",
+            body: "Opening hours are read for the current time in the place's timezone.",
+          },
+          {
+            index: "1.3",
+            title: "Sort by rating or price",
+            body: "Highest rated first, or the cheapest that is still good.",
+          },
         ]}
         demo={<FindDemo />}
       />
@@ -148,9 +179,21 @@ export default function HomePage() {
         b="Meong sums up the reviews."
         body="Every place has reviews from people who ate there. A short summary pulls out what they agree on."
         items={[
-          { index: "2.1", title: "Read real reviews", body: "Ratings, comments and dates, newest first." },
-          { index: "2.2", title: "Get a short summary", body: "Meong lists what people like and what to watch for." },
-          { index: "2.3", title: "Leave your own", body: "Reviews are checked for spam before they are shown." },
+          {
+            index: "2.1",
+            title: "Read real reviews",
+            body: "Ratings, comments and dates, newest first.",
+          },
+          {
+            index: "2.2",
+            title: "Get a short summary",
+            body: "Meong lists what people like and what to watch for.",
+          },
+          {
+            index: "2.3",
+            title: "Leave your own",
+            body: "Reviews are checked for spam before they are shown.",
+          },
         ]}
         demo={<CheckDemo />}
         reverse
@@ -162,9 +205,21 @@ export default function HomePage() {
         b="It stays on your device."
         body="Favorites and collections are stored locally, so they open on the bus with no signal. You can move them to another device any time."
         items={[
-          { index: "3.1", title: "Favorite a place", body: "One tap on the heart, and it is saved to your favorites." },
-          { index: "3.2", title: "Group into collections", body: "Breakfast, coffee dates, late night. Share a collection by link." },
-          { index: "3.3", title: "Move to a new phone", body: "Save one file, then open it on your other device." },
+          {
+            index: "3.1",
+            title: "Favorite a place",
+            body: "One tap on the heart, and it is saved to your favorites.",
+          },
+          {
+            index: "3.2",
+            title: "Group into collections",
+            body: "Breakfast, coffee dates, late night. Share a collection by link.",
+          },
+          {
+            index: "3.3",
+            title: "Move to a new phone",
+            body: "Save one file, then open it on your other device.",
+          },
         ]}
         demo={<KeepDemo />}
       />
@@ -172,13 +227,13 @@ export default function HomePage() {
       {/* 5. Real places */}
       <section aria-labelledby="featured" className="mx-auto max-w-[1100px] px-6 pt-24">
         <div className="flex flex-wrap items-end justify-between gap-3">
-          <h2 id="featured" className="text-[clamp(1.75rem,3vw+0.75rem,2.5rem)] leading-[1.15]">
+          <h2
+            id="featured"
+            className="text-[clamp(1.75rem,3vw+0.75rem,2.5rem)] leading-[1.15]"
+          >
             <TwoTone a="Popular spots," b="rated by people who went." />
           </h2>
-          <Link
-            href="/restaurants"
-            className="btn btn-dark"
-          >
+          <Link href="/restaurants" className="btn btn-dark">
             View all
           </Link>
         </div>
@@ -190,9 +245,15 @@ export default function HomePage() {
       </section>
 
       {/* 6. Collection covers */}
-      <section aria-labelledby="covers" className="relative mx-auto max-w-[1100px] px-6 pt-28">
+      <section
+        aria-labelledby="covers"
+        className="relative mx-auto max-w-[1100px] px-6 pt-28"
+      >
         <div className="mx-auto max-w-2xl text-center">
-          <h2 id="covers" className="text-[clamp(1.75rem,3vw+0.75rem,2.5rem)] leading-[1.15]">
+          <h2
+            id="covers"
+            className="text-[clamp(1.75rem,3vw+0.75rem,2.5rem)] leading-[1.15]"
+          >
             <TwoTone a="Pick a shelf." b="Each one is a starting point." />
           </h2>
         </div>
@@ -233,11 +294,28 @@ export default function HomePage() {
         aria-labelledby="band"
         className="relative mt-28 overflow-hidden bg-[var(--band)] pt-24 pb-28 text-white"
       >
-        <PixelFringe edge="top" rows={14} seed={13} className="absolute inset-x-0 top-0 z-10" />
-        <div className="band-deco band-tree-l left-0 top-4 hidden h-[300px] w-[190px] md:block" aria-hidden="true" />
-        <div className="band-deco band-tree-r right-0 top-4 hidden h-[300px] w-[190px] md:block" aria-hidden="true" />
-        <div className="band-deco band-cloud left-[14%] top-24 hidden h-[50px] w-[120px] lg:block" aria-hidden="true" />
-        <div className="band-deco band-cloud right-[16%] top-40 hidden h-[40px] w-[96px] lg:block" aria-hidden="true" />
+        <PixelFringe
+          edge="top"
+          rows={14}
+          seed={13}
+          className="absolute inset-x-0 top-0 z-10"
+        />
+        <div
+          className="band-deco band-tree-l top-4 left-0 hidden h-[300px] w-[190px] md:block"
+          aria-hidden="true"
+        />
+        <div
+          className="band-deco band-tree-r top-4 right-0 hidden h-[300px] w-[190px] md:block"
+          aria-hidden="true"
+        />
+        <div
+          className="band-deco band-cloud top-24 left-[14%] hidden h-[50px] w-[120px] lg:block"
+          aria-hidden="true"
+        />
+        <div
+          className="band-deco band-cloud top-40 right-[16%] hidden h-[40px] w-[96px] lg:block"
+          aria-hidden="true"
+        />
         <div className="relative z-10 mx-auto max-w-[1100px] px-6">
           <h2
             id="band"
@@ -246,20 +324,28 @@ export default function HomePage() {
             All the ways to choose <span className="text-white/55">where to eat.</span>
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-center text-white/80">
-            Ask, spin, or browse the map. Every tool ends at the same place: a real restaurant
-            you can walk into.
+            Ask, spin, or browse the map. Every tool ends at the same place: a real
+            restaurant you can walk into.
           </p>
           <div className="mt-12">
             <TabBand />
           </div>
         </div>
-        <PixelFringe edge="bottom" rows={14} seed={29} className="absolute inset-x-0 bottom-0 z-10" />
+        <PixelFringe
+          edge="bottom"
+          rows={14}
+          seed={29}
+          className="absolute inset-x-0 bottom-0 z-10"
+        />
       </section>
 
       {/* 8. Recipes + dish field */}
       <section aria-labelledby="dishes" className="mx-auto max-w-[1100px] px-6 pt-28">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 id="dishes" className="text-[clamp(1.5rem,2.4vw+0.75rem,2rem)] leading-[1.15]">
+          <h2
+            id="dishes"
+            className="text-[clamp(1.5rem,2.4vw+0.75rem,2rem)] leading-[1.15]"
+          >
             <TwoTone a="Craving something specific?" b="Start with the dish." />
           </h2>
           <p className="text-terong-700 mt-3">
@@ -281,8 +367,14 @@ export default function HomePage() {
       <section aria-labelledby="closing" className="mx-auto max-w-[1100px] px-6 pt-28">
         <div className="grid grid-cols-[minmax(0,1fr)] items-center gap-12 lg:grid-cols-[1fr_auto] lg:gap-20">
           <div>
-            <h2 id="closing" className="text-[clamp(1.75rem,3vw+0.75rem,2.5rem)] leading-[1.15]">
-              <TwoTone a="Ready when you are hungry." b="Open the list, spin the gacha, or ask Meong." />
+            <h2
+              id="closing"
+              className="text-[clamp(1.75rem,3vw+0.75rem,2.5rem)] leading-[1.15]"
+            >
+              <TwoTone
+                a="Ready when you are hungry."
+                b="Open the list, spin the gacha, or ask Meong."
+              />
             </h2>
             <ul className="mt-10 flex flex-wrap gap-x-6 gap-y-1">
               {(
@@ -294,7 +386,10 @@ export default function HomePage() {
                 ] as const
               ).map(([href, label]) => (
                 <li key={href}>
-                  <Link href={href} className="text-terong-700 hover:text-krem inline-flex min-h-11 items-center underline-offset-4 hover:underline">
+                  <Link
+                    href={href}
+                    className="text-terong-700 hover:text-krem inline-flex min-h-11 items-center underline-offset-4 hover:underline"
+                  >
                     {label}
                   </Link>
                 </li>
@@ -309,7 +404,9 @@ export default function HomePage() {
                 <HeroScene />
               </div>
               <div className="glass absolute inset-x-3 top-3 rounded-lg p-4 text-white">
-                <p className="text-[24px] leading-[1.15] font-medium">Find a place to eat tonight.</p>
+                <p className="text-[24px] leading-[1.15] font-medium">
+                  Find a place to eat tonight.
+                </p>
                 <Link href="/restaurants?buka=1" className="btn btn-light mt-4">
                   Show what&apos;s open
                 </Link>
@@ -346,7 +443,10 @@ function Chapter({
       <div className="grid items-center gap-10 lg:grid-cols-[340px_1fr] lg:gap-[78px]">
         <div className={reverse ? "lg:order-2" : undefined}>
           <Eyebrow>{label}</Eyebrow>
-          <h2 id={id} className="mt-4 text-[clamp(1.75rem,2.6vw+0.75rem,2.25rem)] leading-[1.12]">
+          <h2
+            id={id}
+            className="mt-4 text-[clamp(1.75rem,2.6vw+0.75rem,2.25rem)] leading-[1.12]"
+          >
             <TwoTone a={a} b={b} />
           </h2>
           <p className="text-terong-700 mt-5 leading-[1.4]">{body}</p>
@@ -414,13 +514,18 @@ function CheckDemo() {
             <CountUp to={4.6} decimals={1} />
           </p>
           <div className="bg-edge mt-4 h-2 overflow-hidden rounded">
-            <div className="h-full w-[92%] rounded" style={{ background: "var(--c-leaf)" }} />
+            <div
+              className="h-full w-[92%] rounded"
+              style={{ background: "var(--c-leaf)" }}
+            />
           </div>
           <p className="text-terong-500 mt-2 text-xs">Based on 128 reviews</p>
         </div>
         <div className="bg-raised space-y-3 rounded-xl p-5 text-sm">
           <p className="font-eyebrow text-terong-500 text-xs">Meong&apos;s summary</p>
-          <p className="text-heading">Most people mention the rich broth and the fast service.</p>
+          <p className="text-heading">
+            Most people mention the rich broth and the fast service.
+          </p>
           <div className="flex flex-wrap gap-2">
             {["Rich broth", "Fast", "Busy at lunch"].map((c) => (
               <span key={c} className="px-flat bg-panel px-2.5 py-0.5 text-xs">

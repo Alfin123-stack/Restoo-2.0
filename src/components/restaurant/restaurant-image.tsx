@@ -52,8 +52,7 @@ export function RestaurantImage({
       <div
         className="absolute inset-x-0 bottom-0 h-[16%]"
         style={{
-          background:
-            "linear-gradient(var(--grass-1) 0 55%, var(--grass-2) 55% 100%)",
+          background: "linear-gradient(var(--grass-1) 0 55%, var(--grass-2) 55% 100%)",
         }}
       />
       <PixelArt

@@ -62,7 +62,11 @@ export function VideoButton({ url, title }: { url: string; title: string }) {
       >
         <div className="mb-3 flex items-center justify-between gap-3">
           <p className="font-label min-w-0 truncate text-base">{title}</p>
-          <Button variant="secondary" onClick={() => setOpen(false)} aria-label="Close video">
+          <Button
+            variant="secondary"
+            onClick={() => setOpen(false)}
+            aria-label="Close video"
+          >
             Close
           </Button>
         </div>

@@ -122,13 +122,19 @@ async function RestaurantDetail({ params }: { params: Promise<{ slug: string }> 
     .map((c) => c.split(".").pop() ?? c)
     .map((c) => toTitleCase(c))
     .filter((c) => !/^(restaurant|catering)$/i.test(c));
-  const simpleHours = /^(?:(?:Mo|Tu|We|Th|Fr|Sa|Su)(?:-(?:Mo|Tu|We|Th|Fr|Sa|Su))?(?:,\s*(?:Mo|Tu|We|Th|Fr|Sa|Su))*\s+\d{2}:\d{2}-\d{2}:\d{2}(?:;\s*)?)+$/;
+  const simpleHours =
+    /^(?:(?:Mo|Tu|We|Th|Fr|Sa|Su)(?:-(?:Mo|Tu|We|Th|Fr|Sa|Su))?(?:,\s*(?:Mo|Tu|We|Th|Fr|Sa|Su))*\s+\d{2}:\d{2}-\d{2}:\d{2}(?:;\s*)?)+$/;
   const breadcrumbLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
-      { "@type": "ListItem", position: 2, name: "Restaurants", item: `${SITE_URL}/restaurants` },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Restaurants",
+        item: `${SITE_URL}/restaurants`,
+      },
       {
         "@type": "ListItem",
         position: 3,
@@ -228,9 +234,7 @@ async function RestaurantDetail({ params }: { params: Promise<{ slug: string }> 
           <div className="flex gap-3">
             <PixelIcon name="clock" size={3} className="mt-0.5" />
             <div>
-              <dt className="font-eyebrow text-xs uppercase">
-                Opening hours
-              </dt>
+              <dt className="font-eyebrow text-xs uppercase">Opening hours</dt>
               <dd className="text-terong-700 mt-1">
                 {restaurant.openingHours ?? "Not listed"}
                 {status.state !== "unknown" ? (
@@ -261,9 +265,7 @@ async function RestaurantDetail({ params }: { params: Promise<{ slug: string }> 
             <div className="flex gap-3">
               <PixelIcon name="globe" size={3} className="mt-0.5" />
               <div>
-                <dt className="font-eyebrow text-xs uppercase">
-                  Website
-                </dt>
+                <dt className="font-eyebrow text-xs uppercase">Website</dt>
                 <dd className="mt-1">
                   <a
                     href={restaurant.website}
@@ -343,7 +345,10 @@ async function RestaurantDetail({ params }: { params: Promise<{ slug: string }> 
     <nav aria-label="Breadcrumb">
       <ol className="font-eyebrow flex flex-wrap items-center gap-x-2 text-xs uppercase">
         <li>
-          <Link href="/" className="inline-flex min-h-11 min-w-11 items-center hover:underline">
+          <Link
+            href="/"
+            className="inline-flex min-h-11 min-w-11 items-center hover:underline"
+          >
             Home
           </Link>
         </li>
@@ -398,7 +403,9 @@ async function RestaurantDetail({ params }: { params: Promise<{ slug: string }> 
 
       <div className="px-box relative z-10 mx-3 -mt-14 flex flex-wrap items-start justify-between gap-6 p-5 [--px-bg:var(--color-kartu)] sm:mx-10 sm:-mt-20 sm:p-8">
         <div className="min-w-0 flex-1">
-          <h1 className="text-[clamp(2.25rem,6vw+0.5rem,3.75rem)] leading-[1.05] text-balance">{restaurant.name}</h1>
+          <h1 className="text-[clamp(2.25rem,6vw+0.5rem,3.75rem)] leading-[1.05] text-balance">
+            {restaurant.name}
+          </h1>
           <p className="text-terong-700 mt-3 flex items-start gap-2">
             <PixelIcon name="pin" size={3} className="mt-1" />
             {[restaurant.address, restaurant.city].filter(Boolean).join(", ") ||
@@ -415,7 +422,7 @@ async function RestaurantDetail({ params }: { params: Promise<{ slug: string }> 
             ))}
           </div>
         </div>
-        <div className="max-md:border-terong-900 max-md:bg-malam flex flex-wrap items-start gap-5 max-md:fixed max-md:inset-x-0 max-md:bottom-0 max-md:z-30 max-md:flex-nowrap max-md:justify-center max-md:gap-2 max-md:border-t-4 max-md:p-2 max-md:pb-[max(0.5rem,env(safe-area-inset-bottom))] max-md:[@media(max-height:480px)]:static max-md:[@media(max-height:480px)]:border-t-0 max-md:[&_button]:min-h-11 max-md:[&_button]:gap-1 max-md:[&_button]:px-3 max-md:[&_button]:text-[12px]">
+        <div className="max-md:border-terong-900 max-md:bg-malam flex flex-wrap items-start gap-5 max-md:fixed max-md:inset-x-0 max-md:bottom-0 max-md:z-30 max-md:flex-nowrap max-md:justify-center max-md:gap-2 max-md:border-t-4 max-md:p-2 max-md:pb-[max(0.5rem,env(safe-area-inset-bottom))] max-md:[&_button]:min-h-11 max-md:[&_button]:gap-1 max-md:[&_button]:px-3 max-md:[&_button]:text-[12px] max-md:[@media(max-height:480px)]:static max-md:[@media(max-height:480px)]:border-t-0">
           <LikeButton restaurant={favoriteItem} />
           <CollectionMenu restaurant={favoriteItem} />
           <ShareButton path={`/restaurants/${restaurant.slug}`} title={restaurant.name} />
@@ -454,9 +461,7 @@ async function RestaurantDetail({ params }: { params: Promise<{ slug: string }> 
 function StatTile({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div className="px-box flex flex-col items-center gap-2 p-3 text-center [--px-bg:var(--color-kartu)]">
-      <dt className="font-eyebrow text-terong-700 text-[12px] uppercase">
-        {label}
-      </dt>
+      <dt className="font-eyebrow text-terong-700 text-[12px] uppercase">{label}</dt>
       <dd className="flex min-h-8 items-center justify-center">{children}</dd>
     </div>
   );

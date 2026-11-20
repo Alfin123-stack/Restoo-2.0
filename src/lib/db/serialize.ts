@@ -25,7 +25,11 @@ export function toRestaurantDTO(
     phone: doc.phone ?? null,
     website: doc.website ?? null,
     pictureUrl: doc.pictureUrl ?? null,
-    pictureUrls: [...new Set([doc.pictureUrl, ...(doc.pictureUrls ?? [])].filter((u): u is string => !!u))].slice(0, 9),
+    pictureUrls: [
+      ...new Set(
+        [doc.pictureUrl, ...(doc.pictureUrls ?? [])].filter((u): u is string => !!u),
+      ),
+    ].slice(0, 9),
     menus: { foods: doc.menus?.foods ?? [], drinks: doc.menus?.drinks ?? [] },
     rating: averageRating(doc.ratingSum ?? 0, doc.ratingCount ?? 0),
     ratingCount: doc.ratingCount ?? 0,

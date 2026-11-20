@@ -27,7 +27,8 @@ function build(): string[] {
   const rows = Array.from({ length: ROWS }, () =>
     Array.from({ length: COLS }, () => filler[Math.floor(rand() * filler.length)]!),
   );
-  for (const [r, c, w] of WORDS) for (let i = 0; i < w.length; i++) rows[r]![c + i] = w[i]!;
+  for (const [r, c, w] of WORDS)
+    for (let i = 0; i < w.length; i++) rows[r]![c + i] = w[i]!;
   return rows.map((r) => r.join(""));
 }
 const MATRIX = build();
@@ -77,7 +78,12 @@ export function LetterGrid() {
             </span>
           )),
         )}
-        <svg className="absolute inset-0" width={COLS * CELL_W} height={ROWS * CELL_H} fill="none">
+        <svg
+          className="absolute inset-0"
+          width={COLS * CELL_W}
+          height={ROWS * CELL_H}
+          fill="none"
+        >
           {WORDS.map(([r, c, w], i) => (
             <rect
               key={w}
@@ -104,9 +110,12 @@ export function LetterGrid() {
 /** Narrow screens: the same dishes as a compact row of outlined words. */
 export function DishWords() {
   return (
-    <ul className="font-pixel flex flex-wrap justify-center gap-2 text-lg lg:hidden" aria-label="Dishes">
+    <ul
+      className="font-pixel flex flex-wrap justify-center gap-2 text-lg lg:hidden"
+      aria-label="Dishes"
+    >
       {["RENDANG", "NASI GORENG", "SOTO", "BAKSO", "MIE AYAM"].map((w) => (
-        <li key={w} className="text-heading rounded-full border border-sky/50 px-3 py-1">
+        <li key={w} className="text-heading border-sky/50 rounded-full border px-3 py-1">
           {w}
         </li>
       ))}

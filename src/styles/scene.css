@@ -28,7 +28,11 @@
   will-change: transform;
 }
 
-.l-sky { background-image: url("/scene/sky-day.png"); background-size: cover; background-position: center; }
+.l-sky {
+  background-image: url("/scene/sky-day.png");
+  background-size: cover;
+  background-position: center;
+}
 
 /* Layar sempit: adegan hanya di bagian bawah, langit polos di atas untuk teks. */
 @media (max-width: 639px) {
@@ -37,36 +41,115 @@
     background-position: 82% 100%;
   }
 }
-.l-clouds-far { background-image: url("/scene/clouds-far-day.png"); }
-.l-city { background-image: url("/scene/city-day.png"); }
-.l-clouds-near { background-image: url("/scene/clouds-near-day.png"); }
-.l-mid { background-image: url("/scene/mid-day.png"); }
-.l-tree { background-image: url("/scene/tree-day.png"); }
-.l-grass { background-image: url("/scene/grass-day.png"); }
-.l-warung { background-image: url("/scene/warung-day.png"); }
-.l-steam0 { background-image: url("/scene/steam0-day.png"); }
-.l-steam1 { background-image: url("/scene/steam1-day.png"); }
-:root[data-theme="dark"] .l-sky { background-image: url("/scene/sky-night.png"); }
-:root[data-theme="dark"] .l-clouds-far { background-image: url("/scene/clouds-far-night.png"); }
-:root[data-theme="dark"] .l-city { background-image: url("/scene/city-night.png"); }
-:root[data-theme="dark"] .l-clouds-near { background-image: url("/scene/clouds-near-night.png"); }
-:root[data-theme="dark"] .l-mid { background-image: url("/scene/mid-night.png"); }
-:root[data-theme="dark"] .l-tree { background-image: url("/scene/tree-night.png"); }
-:root[data-theme="dark"] .l-grass { background-image: url("/scene/grass-night.png"); }
-:root[data-theme="dark"] .l-warung { background-image: url("/scene/warung-night.png"); }
-:root[data-theme="dark"] .l-steam0 { background-image: url("/scene/steam0-night.png"); }
-:root[data-theme="dark"] .l-steam1 { background-image: url("/scene/steam1-night.png"); }
+.l-clouds-far {
+  background-image: url("/scene/clouds-far-day.png");
+}
+.l-city {
+  background-image: url("/scene/city-day.png");
+}
+.l-clouds-near {
+  background-image: url("/scene/clouds-near-day.png");
+}
+.l-mid {
+  background-image: url("/scene/mid-day.png");
+}
+.l-tree {
+  background-image: url("/scene/tree-day.png");
+}
+.l-grass {
+  background-image: url("/scene/grass-day.png");
+}
+.l-warung {
+  background-image: url("/scene/warung-day.png");
+}
+.l-steam0 {
+  background-image: url("/scene/steam0-day.png");
+}
+.l-steam1 {
+  background-image: url("/scene/steam1-day.png");
+}
+:root[data-theme="dark"] .l-sky {
+  background-image: url("/scene/sky-night.png");
+}
+:root[data-theme="dark"] .l-clouds-far {
+  background-image: url("/scene/clouds-far-night.png");
+}
+:root[data-theme="dark"] .l-city {
+  background-image: url("/scene/city-night.png");
+}
+:root[data-theme="dark"] .l-clouds-near {
+  background-image: url("/scene/clouds-near-night.png");
+}
+:root[data-theme="dark"] .l-mid {
+  background-image: url("/scene/mid-night.png");
+}
+:root[data-theme="dark"] .l-tree {
+  background-image: url("/scene/tree-night.png");
+}
+:root[data-theme="dark"] .l-grass {
+  background-image: url("/scene/grass-night.png");
+}
+:root[data-theme="dark"] .l-warung {
+  background-image: url("/scene/warung-night.png");
+}
+:root[data-theme="dark"] .l-steam0 {
+  background-image: url("/scene/steam0-night.png");
+}
+:root[data-theme="dark"] .l-steam1 {
+  background-image: url("/scene/steam1-night.png");
+}
 
 /* Idle: awan bergeser pelan, uap bergantian dua frame, sinar berdenyut, bintang berkedip. */
-@keyframes cloud-a { to { transform: translateX(-4%); } }
-@keyframes cloud-b { to { transform: translateX(3%); } }
-.drift-a { animation: cloud-a 90s ease-in-out infinite alternate; }
-.drift-b { animation: cloud-b 130s ease-in-out infinite alternate; }
-@keyframes steam-a { 0%, 49.9% { opacity: 1; } 50%, 100% { opacity: 0; } }
-@keyframes steam-b { 0%, 49.9% { opacity: 0; } 50%, 100% { opacity: 1; } }
-.l-steam0 { animation: steam-a 1.4s steps(1) infinite; }
-.l-steam1 { animation: steam-b 1.4s steps(1) infinite; }
-@keyframes rays-pulse { from { opacity: 0.55; } to { opacity: 1; } }
+@keyframes cloud-a {
+  to {
+    transform: translateX(-4%);
+  }
+}
+@keyframes cloud-b {
+  to {
+    transform: translateX(3%);
+  }
+}
+.drift-a {
+  animation: cloud-a 90s ease-in-out infinite alternate;
+}
+.drift-b {
+  animation: cloud-b 130s ease-in-out infinite alternate;
+}
+@keyframes steam-a {
+  0%,
+  49.9% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes steam-b {
+  0%,
+  49.9% {
+    opacity: 0;
+  }
+  50%,
+  100% {
+    opacity: 1;
+  }
+}
+.l-steam0 {
+  animation: steam-a 1.4s steps(1) infinite;
+}
+.l-steam1 {
+  animation: steam-b 1.4s steps(1) infinite;
+}
+@keyframes rays-pulse {
+  from {
+    opacity: 0.55;
+  }
+  to {
+    opacity: 1;
+  }
+}
 .scene-rays {
   position: absolute;
   inset: 0;
@@ -84,15 +167,35 @@
   );
   animation: rays-pulse 7s ease-in-out infinite alternate;
 }
-:root[data-theme="dark"] .scene-rays { display: none; }
-@keyframes twinkle-px { 50% { opacity: 0.55; } }
-:root[data-theme="dark"] .l-sky { animation: twinkle-px 3.2s steps(2) infinite; }
+:root[data-theme="dark"] .scene-rays {
+  display: none;
+}
+@keyframes twinkle-px {
+  50% {
+    opacity: 0.55;
+  }
+}
+:root[data-theme="dark"] .l-sky {
+  animation: twinkle-px 3.2s steps(2) infinite;
+}
 
 /* Parallax saat scroll: lapisan jauh tertinggal. Lapisan depan diam supaya tidak ada celah. */
 @supports (animation-timeline: scroll()) {
-  @keyframes par-far { to { transform: translateY(90px); } }
-  @keyframes par-mid { to { transform: translateY(56px); } }
-  @keyframes par-city { to { transform: translateY(24px); } }
+  @keyframes par-far {
+    to {
+      transform: translateY(90px);
+    }
+  }
+  @keyframes par-mid {
+    to {
+      transform: translateY(56px);
+    }
+  }
+  @keyframes par-city {
+    to {
+      transform: translateY(24px);
+    }
+  }
   .par-far,
   .par-mid,
   .par-city {
@@ -101,9 +204,15 @@
     animation-timeline: scroll(root block);
     animation-range: 0 100vh;
   }
-  .par-far { animation-name: par-far; }
-  .par-mid { animation-name: par-mid; }
-  .par-city { animation-name: par-city; }
+  .par-far {
+    animation-name: par-far;
+  }
+  .par-mid {
+    animation-name: par-mid;
+  }
+  .par-city {
+    animation-name: par-city;
+  }
 }
 
 /* Notifikasi kaca hijau di atas warung: tiga slot, satu masuk dari atas. */
@@ -134,18 +243,46 @@
 :root[data-theme="dark"] .notif {
   background: linear-gradient(rgb(30 20 70 / 0.68), rgb(30 20 70 / 0.5));
 }
-.notif[data-slot="0"] { transform: translateY(0); opacity: 1; }
-.notif[data-slot="1"] { transform: translateY(46px); opacity: 0.88; }
-.notif[data-slot="2"] { transform: translateY(92px); opacity: 0.7; }
-.notif[data-slot="enter"] { transform: translateY(-34px) scale(0.96); opacity: 0; }
-.notif[data-slot="exit"] { transform: translateY(132px) scale(0.98); opacity: 0; }
-.notif[data-slot="hidden"] { transform: translateY(132px); opacity: 0; visibility: hidden; }
+.notif[data-slot="0"] {
+  transform: translateY(0);
+  opacity: 1;
+}
+.notif[data-slot="1"] {
+  transform: translateY(46px);
+  opacity: 0.88;
+}
+.notif[data-slot="2"] {
+  transform: translateY(92px);
+  opacity: 0.7;
+}
+.notif[data-slot="enter"] {
+  transform: translateY(-34px) scale(0.96);
+  opacity: 0;
+}
+.notif[data-slot="exit"] {
+  transform: translateY(132px) scale(0.98);
+  opacity: 0;
+}
+.notif[data-slot="hidden"] {
+  transform: translateY(132px);
+  opacity: 0;
+  visibility: hidden;
+}
 
 @media (prefers-reduced-motion: reduce) {
-  .drift-a, .drift-b, .scene-rays, .l-steam0, .l-steam1, .par-far, .par-mid, .par-city {
+  .drift-a,
+  .drift-b,
+  .scene-rays,
+  .l-steam0,
+  .l-steam1,
+  .par-far,
+  .par-mid,
+  .par-city {
     animation: none !important;
   }
-  .l-steam1 { opacity: 0; }
+  .l-steam1 {
+    opacity: 0;
+  }
 }
 html[data-motion="off"] .drift-a,
 html[data-motion="off"] .drift-b,
@@ -157,7 +294,9 @@ html[data-motion="off"] .par-mid,
 html[data-motion="off"] .par-city {
   animation: none !important;
 }
-html[data-motion="off"] .l-steam1 { opacity: 0; }
+html[data-motion="off"] .l-steam1 {
+  opacity: 0;
+}
 
 /* Band biru: pohon dan awan pixel di tepi. */
 .band-deco {
@@ -167,23 +306,47 @@ html[data-motion="off"] .l-steam1 { opacity: 0; }
   image-rendering: pixelated;
   pointer-events: none;
 }
-.band-tree-r { background-image: url("/scene/band-tree-r-day.png"); }
-.band-tree-l { background-image: url("/scene/band-tree-l-day.png"); }
-.band-cloud { background-image: url("/scene/band-cloud-day.png"); }
-:root[data-theme="dark"] .band-tree-r { background-image: url("/scene/band-tree-r-night.png"); }
-:root[data-theme="dark"] .band-tree-l { background-image: url("/scene/band-tree-l-night.png"); }
-:root[data-theme="dark"] .band-cloud { background-image: url("/scene/band-cloud-night.png"); }
+.band-tree-r {
+  background-image: url("/scene/band-tree-r-day.png");
+}
+.band-tree-l {
+  background-image: url("/scene/band-tree-l-day.png");
+}
+.band-cloud {
+  background-image: url("/scene/band-cloud-day.png");
+}
+:root[data-theme="dark"] .band-tree-r {
+  background-image: url("/scene/band-tree-r-night.png");
+}
+:root[data-theme="dark"] .band-tree-l {
+  background-image: url("/scene/band-tree-l-night.png");
+}
+:root[data-theme="dark"] .band-cloud {
+  background-image: url("/scene/band-cloud-night.png");
+}
 
 @keyframes hero-in {
-  from { transform: translateY(14px); opacity: 0.2; }
-  to { transform: none; opacity: 1; }
+  from {
+    transform: translateY(14px);
+    opacity: 0.2;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
 }
 .hero-in {
   animation: hero-in 600ms cubic-bezier(0.23, 1, 0.32, 1) both;
   animation-delay: calc(var(--i, 0) * 90ms);
 }
-@media (prefers-reduced-motion: reduce) { .hero-in { animation: none; } }
-html[data-motion="off"] .hero-in { animation: none; }
+@media (prefers-reduced-motion: reduce) {
+  .hero-in {
+    animation: none;
+  }
+}
+html[data-motion="off"] .hero-in {
+  animation: none;
+}
 
 /* Adegan di dalam kartu kecil: tanpa parallax, awan diam. */
 .scene-static .par-far,

@@ -139,7 +139,8 @@
   --frame-ring: rgb(255 255 255 / 0.05);
   --skeleton-a: #23232b;
   --skeleton-b: #2e2e38;
-  --map-filter: invert(0.92) hue-rotate(200deg) saturate(0.6) brightness(0.95) contrast(0.95);
+  --map-filter: invert(0.92) hue-rotate(200deg) saturate(0.6) brightness(0.95)
+    contrast(0.95);
   --header-bg: rgb(18 18 22 / 0.82);
   --fringe: #121216;
   --band: #1c1748;
@@ -185,16 +186,16 @@ body {
 
 /* Judul: weight 400, dua nada (tinta lalu abu pudar). Penekanan lewat warna, bukan tebal. */
 @layer base {
-h1,
-h2,
-h3,
-h4 {
-  font-family: var(--font-display);
-  font-weight: 400;
-  line-height: 1.12;
-  letter-spacing: 0;
-  color: var(--c-heading);
-}
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 1.12;
+    letter-spacing: 0;
+    color: var(--c-heading);
+  }
 }
 .tone-2 {
   color: var(--c-text-3);

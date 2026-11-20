@@ -15,7 +15,9 @@ export default async function Image({ params }: { params: Promise<{ slug: string
   for (const ch of name) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
   const awning = STOREFRONT_AWNINGS[h % STOREFRONT_AWNINGS.length]!;
   const rating = r?.rating ? `${r.rating.toFixed(1)} / 5` : null;
-  const subtitle = [r?.city ? toTitleCase(r.city) : null, rating].filter(Boolean).join(" · ");
+  const subtitle = [r?.city ? toTitleCase(r.city) : null, rating]
+    .filter(Boolean)
+    .join(" · ");
   return ogCard({
     title: name,
     subtitle,

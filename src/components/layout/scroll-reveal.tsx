@@ -32,8 +32,10 @@ export function ScrollReveal() {
   useEffect(() => {
     const root = document.documentElement;
     const off = () =>
-      root.dataset.motion === "off" || matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (typeof IntersectionObserver === "undefined" || !("animate" in Element.prototype)) return;
+      root.dataset.motion === "off" ||
+      matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (typeof IntersectionObserver === "undefined" || !("animate" in Element.prototype))
+      return;
 
     const held = new WeakMap<Element, Animation[]>();
     const easing = "cubic-bezier(0.23, 1, 0.32, 1)";
@@ -41,14 +43,22 @@ export function ScrollReveal() {
     const hold = (el: HTMLElement) => {
       const text = TEXT.includes(el.tagName);
       const frames: Keyframe[] = [
-        { opacity: 0, transform: "translateY(22px)", ...(text ? { filter: "blur(3px)" } : {}) },
+        {
+          opacity: 0,
+          transform: "translateY(22px)",
+          ...(text ? { filter: "blur(3px)" } : {}),
+        },
         { opacity: 1, transform: "none", ...(text ? { filter: "blur(0px)" } : {}) },
       ];
       const list = [el.animate(frames, { duration: 800, easing, fill: "both" })];
       // Second tone of two-tone headings arrives a beat later.
       el.querySelectorAll(".tone-2").forEach((t) =>
         list.push(
-          t.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 900, easing: "ease-out", fill: "both" }),
+          t.animate([{ opacity: 0 }, { opacity: 1 }], {
+            duration: 900,
+            easing: "ease-out",
+            fill: "both",
+          }),
         ),
       );
       list.forEach((a, i) => {
@@ -117,7 +127,9 @@ export function ScrollReveal() {
         // Drop held animations of nodes that left the page (client navigation).
         r.removedNodes.forEach((n) => {
           if (n instanceof Element)
-            n.getAnimations({ subtree: true }).forEach((a) => a.playState === "paused" && a.cancel());
+            n.getAnimations({ subtree: true }).forEach(
+              (a) => a.playState === "paused" && a.cancel(),
+            );
         });
         r.addedNodes.forEach((n) => n instanceof Element && scan(n));
       }

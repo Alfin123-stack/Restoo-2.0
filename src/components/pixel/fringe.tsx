@@ -82,7 +82,11 @@ export function PixelFringe({
           "absolute left-1/2 block h-full -translate-x-1/2",
           edge === "top" && "-scale-y-100",
         )}
-        style={{ width: "max(100%, 720px)", height: "auto", aspectRatio: `${COLS} / ${rows}` }}
+        style={{
+          width: "max(100%, 720px)",
+          height: "auto",
+          aspectRatio: `${COLS} / ${rows}`,
+        }}
       >
         <path d={body} fill={fill} />
         <path d={specks} fill={speck ?? fill} />

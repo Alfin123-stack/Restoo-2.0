@@ -25,8 +25,8 @@ export function SiteFooter() {
         <div className="space-y-5">
           <p className="font-serif-mark text-heading text-[28px] leading-none">Restoo</p>
           <p className="text-terong-700 max-w-md">
-            Find places to eat, read reviews, and save the ones you love. Your collections stay
-            on this device and open even without internet.
+            Find places to eat, read reviews, and save the ones you love. Your collections
+            stay on this device and open even without internet.
           </p>
           <p className="text-terong-500 max-w-xl text-xs leading-6">
             Location data © OpenStreetMap contributors via{" "}
@@ -69,7 +69,13 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="relative">
-        <PixelFringe fill="var(--grass-2)" speck="var(--grass-1)" rows={12} seed={21} className="relative" />
+        <PixelFringe
+          fill="var(--grass-2)"
+          speck="var(--grass-1)"
+          rows={12}
+          seed={21}
+          className="relative"
+        />
         <p className="absolute inset-x-0 bottom-1 text-center text-xs font-medium text-[#0c2410] dark:text-[#eaf6ea]">
           Made for hungry people
         </p>

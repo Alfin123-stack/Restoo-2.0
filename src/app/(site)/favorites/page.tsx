@@ -52,9 +52,7 @@ async function Shared({
   return (
     <section aria-labelledby="shared" className="mb-16 space-y-6">
       <div className="px-box space-y-4 p-5 [--px-bg:var(--color-langit-100)]">
-        <p className="font-eyebrow text-xs uppercase">
-          Shared with you
-        </p>
+        <p className="font-eyebrow text-xs uppercase">Shared with you</p>
         <h2 id="shared" className="text-3xl">
           {shared.name}
         </h2>

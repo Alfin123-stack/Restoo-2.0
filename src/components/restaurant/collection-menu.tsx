@@ -44,9 +44,7 @@ export function CollectionMenu({
         hidden={!open}
         className="px-box absolute z-30 mt-4 w-72 max-w-[calc(100vw-2rem)] space-y-4 p-4 [--px-bg:var(--color-kartu)]"
       >
-        <p className="font-eyebrow text-xs uppercase">
-          Save to collection
-        </p>
+        <p className="font-eyebrow text-xs uppercase">Save to collection</p>
         {!loaded ? (
           <p className="text-terong-500 text-sm">Loading…</p>
         ) : collections.length === 0 ? (
@@ -89,10 +87,7 @@ export function CollectionMenu({
         )}
         {collections.length < MAX_COLLECTIONS ? (
           <form onSubmit={(e) => void create(e)} className="space-y-2">
-            <label
-              htmlFor={inputId}
-              className="font-eyebrow block text-xs uppercase"
-            >
+            <label htmlFor={inputId} className="font-eyebrow block text-xs uppercase">
               New collection
             </label>
             <div className="flex gap-3">

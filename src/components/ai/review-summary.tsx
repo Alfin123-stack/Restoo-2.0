@@ -12,9 +12,7 @@ export async function ReviewSummaryCard({ restaurantId }: { restaurantId: string
       className="px-box mb-8 space-y-4 p-5 [--px-bg:var(--color-pandan-100)]"
     >
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h3 className="font-eyebrow text-xs uppercase">
-          What people say
-        </h3>
+        <h3 className="font-eyebrow text-xs uppercase">What people say</h3>
         <span className="font-eyebrow text-terong-700 text-xs uppercase">
           {summary.source === "ai" ? "AI summary" : "Quick summary"} · {summary.basedOn}{" "}
           reviews

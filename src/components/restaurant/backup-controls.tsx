@@ -15,14 +15,17 @@ export function BackupControls() {
     <details className="group bg-panel rounded-2xl p-5">
       <summary className="font-label flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 text-base">
         <span>Move to another device</span>
-        <span aria-hidden="true" className="text-terong-500 transition-transform group-open:rotate-45">
+        <span
+          aria-hidden="true"
+          className="text-terong-500 transition-transform group-open:rotate-45"
+        >
           +
         </span>
       </summary>
       <div className="space-y-4 pt-3">
         <p className="text-terong-700 text-sm leading-[1.4]">
-          Your saved places stay on this device. Save a copy to open them on a new phone or
-          computer, or to get them back after clearing your browser.
+          Your saved places stay on this device. Save a copy to open them on a new phone
+          or computer, or to get them back after clearing your browser.
         </p>
         <div className="flex flex-wrap gap-3">
           <Button variant="secondary" onClick={exportBackup}>
@@ -60,13 +63,16 @@ export function BackupControls() {
           if (!file) return;
           try {
             const r = await importBackup(file);
-            setMessage(`Added ${r.favorites} favorites and ${r.collections} collections.`);
+            setMessage(
+              `Added ${r.favorites} favorites and ${r.collections} collections.`,
+            );
           } catch {
             setMessage("That file is not a copy saved from Restoo.");
           }
         }}
       >
-        The places in this file are added to this device. Nothing you already saved is removed.
+        The places in this file are added to this device. Nothing you already saved is
+        removed.
       </ConfirmDialog>
     </details>
   );

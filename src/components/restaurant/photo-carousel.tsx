@@ -1,7 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState, useSyncExternalStore, type ReactNode } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  useSyncExternalStore,
+  type ReactNode,
+} from "react";
 import { RestaurantImage } from "@/components/restaurant/restaurant-image";
 import { cn } from "@/lib/utils";
 
@@ -14,7 +21,10 @@ function useReducedMotion() {
       const mq = matchMedia("(prefers-reduced-motion: reduce)");
       const mo = new MutationObserver(cb);
       mq.addEventListener("change", cb);
-      mo.observe(document.documentElement, { attributes: true, attributeFilter: ["data-motion"] });
+      mo.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ["data-motion"],
+      });
       return () => {
         mq.removeEventListener("change", cb);
         mo.disconnect();
@@ -29,7 +39,13 @@ function useReducedMotion() {
 
 function Arrow({ dir }: { dir: "prev" | "next" }) {
   return (
-    <svg viewBox="0 0 8 12" width="16" height="24" aria-hidden="true" shapeRendering="crispEdges">
+    <svg
+      viewBox="0 0 8 12"
+      width="16"
+      height="24"
+      aria-hidden="true"
+      shapeRendering="crispEdges"
+    >
       <path
         fill="currentColor"
         d={
@@ -79,7 +95,10 @@ export function PhotoCarousel({
       const next = ((i % total) + total) % total;
       // The index follows the scroll position (onScroll); it is never set here, or a smooth
       // scroll in progress would fight it.
-      el.scrollTo({ left: next * el.clientWidth, behavior: smooth && !reduced ? "smooth" : "auto" });
+      el.scrollTo({
+        left: next * el.clientWidth,
+        behavior: smooth && !reduced ? "smooth" : "auto",
+      });
     },
     [total, reduced],
   );
@@ -160,7 +179,7 @@ export function PhotoCarousel({
           if (i !== index) setIndex(i);
         }}
         onPointerDown={() => (holdUntil.current = Date.now() + RESUME_AFTER_MS)}
-        className="flex size-full snap-x snap-mandatory overflow-x-auto overscroll-x-contain [scrollbar-width:none] focus-visible:outline-offset-[-4px] [&::-webkit-scrollbar]:hidden"
+        className="flex size-full snap-x snap-mandatory [scrollbar-width:none] overflow-x-auto overscroll-x-contain focus-visible:outline-offset-[-4px] [&::-webkit-scrollbar]:hidden"
       >
         {slides.map((src, i) => (
           <div
@@ -195,14 +214,14 @@ export function PhotoCarousel({
               aria-label={dir === "prev" ? "Previous photo" : "Next photo"}
               onClick={() => userMove(index + (dir === "prev" ? -1 : 1))}
               className={cn(
-                "btn btn-light absolute top-[40%] z-10 !min-h-11 size-11 -translate-y-1/2 !p-0",
+                "btn btn-light absolute top-[40%] z-10 size-11 !min-h-11 -translate-y-1/2 !p-0",
                 dir === "prev" ? "left-3" : "right-3",
               )}
             >
               <Arrow dir={dir} />
             </button>
           ))}
-          <div className="absolute inset-x-0 bottom-[4.25rem] z-10 sm:bottom-[6.25rem] flex items-center justify-center gap-3">
+          <div className="absolute inset-x-0 bottom-[4.25rem] z-10 flex items-center justify-center gap-3 sm:bottom-[6.25rem]">
             <div className="bg-raised/90 flex items-center gap-1 rounded-full px-2 py-1 backdrop-blur-sm">
               {slides.map((src, i) => (
                 <button
@@ -216,7 +235,9 @@ export function PhotoCarousel({
                   <span
                     className={cn(
                       "block size-2.5 transition-transform",
-                      i === index ? "bg-[var(--c-leaf)] scale-125 outline outline-2 outline-[var(--px-ink,#17171c)]" : "bg-terong-500/55",
+                      i === index
+                        ? "scale-125 bg-[var(--c-leaf)] outline outline-2 outline-[var(--px-ink,#17171c)]"
+                        : "bg-terong-500/55",
                     )}
                   />
                 </button>
@@ -229,10 +250,20 @@ export function PhotoCarousel({
                   onClick={() => setPaused((p) => !p)}
                   className="text-krem ml-1 grid size-6 place-items-center"
                 >
-                  <svg viewBox="0 0 8 8" width="12" height="12" aria-hidden="true" shapeRendering="crispEdges">
+                  <svg
+                    viewBox="0 0 8 8"
+                    width="12"
+                    height="12"
+                    aria-hidden="true"
+                    shapeRendering="crispEdges"
+                  >
                     <path
                       fill="currentColor"
-                      d={paused ? "M1 0h2v8H1zM3 1h2v6H3zM5 2h2v4H5z" : "M1 0h2v8H1zM5 0h2v8H5z"}
+                      d={
+                        paused
+                          ? "M1 0h2v8H1zM3 1h2v6H3zM5 2h2v4H5z"
+                          : "M1 0h2v8H1zM5 0h2v8H5z"
+                      }
                     />
                   </svg>
                 </button>
