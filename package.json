@@ -1,0 +1,63 @@
+{
+  "name": "restoo",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "next typegen && tsc --noEmit && tsc --noEmit -p tsconfig.sw.json",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "sprites": "tsx scripts/sprites/build.mts",
+    "seed:fetch": "tsx --env-file=.env.local scripts/seed/fetch-geoapify.mts",
+    "seed:indexes": "tsx --env-file=.env.local scripts/seed/ensure-indexes.mts",
+    "seed": "tsx --env-file=.env.local scripts/seed/seed.mts",
+    "seed:tags": "tsx --env-file=.env.local scripts/seed/enrich-tags.mts",
+    "seed:clear": "tsx --env-file=.env.local scripts/seed/clear.mts",
+    "seed:demo": "tsx --env-file=.env.local scripts/seed/seed.mts --demo",
+    "prepare": "husky || true"
+  },
+  "dependencies": {
+    "@fontsource-variable/inter": "^5.3.0",
+    "@fontsource/ibm-plex-mono": "^5.3.0",
+    "@fontsource/instrument-serif": "^5.3.0",
+    "@serwist/turbopack": "^9.5.13",
+    "esbuild-wasm": "^0.28.2",
+    "idb": "^8.0.4",
+    "lucide-react": "^1.70.0",
+    "maplibre-gl": "^5.0.0",
+    "mongoose": "^9.12.1",
+    "next": "16.4.6",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "sanitize-html": "^2.18.1",
+    "server-only": "^0.0.1",
+    "serwist": "^9.5.13",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@tailwindcss/turbopack": "4.3.3",
+    "@types/node": "^22.20.5",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/sanitize-html": "^2.16.2",
+    "eslint": "^9",
+    "eslint-config-next": "16.4.6",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.6.0",
+    "prettier": "^3.9.10",
+    "prettier-plugin-tailwindcss": "^0.8.1",
+    "tailwindcss": "4.3.3",
+    "tsx": "^4.23.15",
+    "typescript": "^5"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,mjs,json,css,md}": "prettier --write",
+    "*.{ts,tsx}": "eslint --fix"
+  },
+  "engines": {
+    "node": ">=20.9"
+  }
+}

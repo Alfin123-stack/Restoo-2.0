@@ -1,0 +1,82 @@
+/* Pixel-style popups for the map. Unlayered on purpose: MapLibre's own CSS is unlayered too,
+   and layered Tailwind rules would lose to it. */
+.restoo-popup { max-width: 260px !important; }
+
+.restoo-popup .maplibregl-popup-content {
+  background: var(--c-card, #fbfbf8);
+  color: var(--c-heading, var(--c-text, #171717));
+  border-radius: 0;
+  padding: 0;
+  font-family: var(--font-pixel, ui-monospace, monospace);
+  /* Four straight shadows give a stepped, notched-corner pixel frame. */
+  box-shadow:
+    0 -4px 0 0 var(--c-ink, #171717),
+    0 4px 0 0 var(--c-ink, #171717),
+    -4px 0 0 0 var(--c-ink, #171717),
+    4px 0 0 0 var(--c-ink, #171717),
+    inset -4px -4px 0 0 rgb(0 0 0 / 0.1),
+    inset 4px 4px 0 0 rgb(255 255 255 / 0.5);
+}
+
+/* Stepped tip (only when the popup sits above its point). */
+.restoo-popup .maplibregl-popup-tip {
+  border: 0 !important;
+  width: 12px;
+  height: 4px;
+  margin-top: 4px;
+  background: var(--c-ink, #171717);
+  position: relative;
+}
+.restoo-popup .maplibregl-popup-tip::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  width: 4px;
+  height: 4px;
+  background: var(--c-ink, #171717);
+}
+.restoo-popup:not(.maplibregl-popup-anchor-bottom) .maplibregl-popup-tip { display: none; }
+
+.restoo-popup .maplibregl-popup-close-button {
+  top: 6px;
+  right: 6px;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border-radius: 0;
+  font: 700 14px/1 var(--font-pixel, monospace);
+  color: var(--c-heading, var(--c-text, #171717));
+  background: transparent;
+  box-shadow: inset 0 0 0 2px var(--c-heading, var(--c-text, #171717));
+}
+.restoo-popup .maplibregl-popup-close-button:hover {
+  background: var(--c-heading, var(--c-text, #171717));
+  color: var(--c-card, #fbfbf8);
+}
+
+.rp-body { padding: 14px 14px 12px; min-width: 190px; }
+.rp-head { display: flex; gap: 10px; align-items: flex-start; padding-right: 22px; }
+.rp-head svg { flex: none; margin-top: 2px; }
+.rp-name {
+  font-size: 13px; line-height: 1.25; text-transform: uppercase; letter-spacing: 0.02em;
+  overflow-wrap: anywhere;
+}
+.rp-city { margin-top: 4px; font-size: 11px; color: var(--c-text, #4f4d4c); }
+.rp-rule {
+  height: 4px; margin: 10px 0;
+  background-image: linear-gradient(90deg, var(--c-ink, #171717) 4px, transparent 4px);
+  background-size: 8px 4px; opacity: 0.35;
+}
+.rp-go {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  min-height: 40px; padding: 0 12px;
+  background: var(--c-leaf, #549f4b); color: #111;
+  font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; text-decoration: none;
+  box-shadow: 0 -2px 0 0 var(--c-ink, #171717), 0 2px 0 0 var(--c-ink, #171717),
+    -2px 0 0 0 var(--c-ink, #171717), 2px 0 0 0 var(--c-ink, #171717),
+    inset 0 -4px 0 0 rgb(0 0 0 / 0.18);
+}
+.rp-go:hover { filter: brightness(1.08); }
+.rp-go:active { transform: translateY(2px); box-shadow: 0 -2px 0 0 var(--c-ink, #171717), 0 2px 0 0 var(--c-ink, #171717), -2px 0 0 0 var(--c-ink, #171717), 2px 0 0 0 var(--c-ink, #171717); }
+.rp-go:focus-visible { outline: 3px solid var(--c-focus, #1a6fd1); outline-offset: 4px; }

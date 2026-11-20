@@ -1,0 +1,200 @@
+/*
+ * Adegan hero: tumpukan layer PNG pixel (320x200) yang diskalakan dengan `cover`.
+ * Siang/malam diganti lewat data-theme; hanya PNG tema aktif yang diunduh.
+ * Parallax memakai animasi scroll CSS (tanpa JS); gerak idle berupa awan, uap, sinar, bintang.
+ */
+.scene {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: linear-gradient(
+    var(--sky-1) 0 22%,
+    var(--sky-2) 22% 44%,
+    var(--sky-3) 44% 62%,
+    var(--sky-4) 62% 100%
+  );
+}
+.scene-layer {
+  position: absolute;
+  inset: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 72% 100%;
+  image-rendering: pixelated;
+}
+.scene-par {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+}
+
+.l-sky { background-image: url("/scene/sky-day.png"); background-size: cover; background-position: center; }
+
+/* Layar sempit: adegan hanya di bagian bawah, langit polos di atas untuk teks. */
+@media (max-width: 639px) {
+  .scene-layer:not(.l-sky) {
+    background-size: auto 56%;
+    background-position: 82% 100%;
+  }
+}
+.l-clouds-far { background-image: url("/scene/clouds-far-day.png"); }
+.l-city { background-image: url("/scene/city-day.png"); }
+.l-clouds-near { background-image: url("/scene/clouds-near-day.png"); }
+.l-mid { background-image: url("/scene/mid-day.png"); }
+.l-tree { background-image: url("/scene/tree-day.png"); }
+.l-grass { background-image: url("/scene/grass-day.png"); }
+.l-warung { background-image: url("/scene/warung-day.png"); }
+.l-steam0 { background-image: url("/scene/steam0-day.png"); }
+.l-steam1 { background-image: url("/scene/steam1-day.png"); }
+:root[data-theme="dark"] .l-sky { background-image: url("/scene/sky-night.png"); }
+:root[data-theme="dark"] .l-clouds-far { background-image: url("/scene/clouds-far-night.png"); }
+:root[data-theme="dark"] .l-city { background-image: url("/scene/city-night.png"); }
+:root[data-theme="dark"] .l-clouds-near { background-image: url("/scene/clouds-near-night.png"); }
+:root[data-theme="dark"] .l-mid { background-image: url("/scene/mid-night.png"); }
+:root[data-theme="dark"] .l-tree { background-image: url("/scene/tree-night.png"); }
+:root[data-theme="dark"] .l-grass { background-image: url("/scene/grass-night.png"); }
+:root[data-theme="dark"] .l-warung { background-image: url("/scene/warung-night.png"); }
+:root[data-theme="dark"] .l-steam0 { background-image: url("/scene/steam0-night.png"); }
+:root[data-theme="dark"] .l-steam1 { background-image: url("/scene/steam1-night.png"); }
+
+/* Idle: awan bergeser pelan, uap bergantian dua frame, sinar berdenyut, bintang berkedip. */
+@keyframes cloud-a { to { transform: translateX(-4%); } }
+@keyframes cloud-b { to { transform: translateX(3%); } }
+.drift-a { animation: cloud-a 90s ease-in-out infinite alternate; }
+.drift-b { animation: cloud-b 130s ease-in-out infinite alternate; }
+@keyframes steam-a { 0%, 49.9% { opacity: 1; } 50%, 100% { opacity: 0; } }
+@keyframes steam-b { 0%, 49.9% { opacity: 0; } 50%, 100% { opacity: 1; } }
+.l-steam0 { animation: steam-a 1.4s steps(1) infinite; }
+.l-steam1 { animation: steam-b 1.4s steps(1) infinite; }
+@keyframes rays-pulse { from { opacity: 0.55; } to { opacity: 1; } }
+.scene-rays {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  mix-blend-mode: soft-light;
+  background: linear-gradient(
+    112deg,
+    transparent 46%,
+    rgb(255 255 255 / 0.5) 46% 50%,
+    transparent 50% 56%,
+    rgb(255 255 255 / 0.32) 56% 58%,
+    transparent 58% 66%,
+    rgb(255 255 255 / 0.36) 66% 70%,
+    transparent 70%
+  );
+  animation: rays-pulse 7s ease-in-out infinite alternate;
+}
+:root[data-theme="dark"] .scene-rays { display: none; }
+@keyframes twinkle-px { 50% { opacity: 0.55; } }
+:root[data-theme="dark"] .l-sky { animation: twinkle-px 3.2s steps(2) infinite; }
+
+/* Parallax saat scroll: lapisan jauh tertinggal. Lapisan depan diam supaya tidak ada celah. */
+@supports (animation-timeline: scroll()) {
+  @keyframes par-far { to { transform: translateY(90px); } }
+  @keyframes par-mid { to { transform: translateY(56px); } }
+  @keyframes par-city { to { transform: translateY(24px); } }
+  .par-far,
+  .par-mid,
+  .par-city {
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+    animation-timeline: scroll(root block);
+    animation-range: 0 100vh;
+  }
+  .par-far { animation-name: par-far; }
+  .par-mid { animation-name: par-mid; }
+  .par-city { animation-name: par-city; }
+}
+
+/* Notifikasi kaca hijau di atas warung: tiga slot, satu masuk dari atas. */
+.notif {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 12px;
+  line-height: 1.3;
+  background: linear-gradient(rgb(20 70 40 / 0.62), rgb(20 70 40 / 0.46));
+  backdrop-filter: blur(10px);
+  box-shadow:
+    inset 0 1px 1px rgb(255 255 255 / 0.28),
+    inset 0 -1px 0 rgb(0 0 0 / 0.18),
+    0 4px 14px rgb(0 0 0 / 0.14);
+  transition:
+    transform 520ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 360ms ease-out;
+  will-change: transform, opacity;
+}
+:root[data-theme="dark"] .notif {
+  background: linear-gradient(rgb(30 20 70 / 0.68), rgb(30 20 70 / 0.5));
+}
+.notif[data-slot="0"] { transform: translateY(0); opacity: 1; }
+.notif[data-slot="1"] { transform: translateY(46px); opacity: 0.88; }
+.notif[data-slot="2"] { transform: translateY(92px); opacity: 0.7; }
+.notif[data-slot="enter"] { transform: translateY(-34px) scale(0.96); opacity: 0; }
+.notif[data-slot="exit"] { transform: translateY(132px) scale(0.98); opacity: 0; }
+.notif[data-slot="hidden"] { transform: translateY(132px); opacity: 0; visibility: hidden; }
+
+@media (prefers-reduced-motion: reduce) {
+  .drift-a, .drift-b, .scene-rays, .l-steam0, .l-steam1, .par-far, .par-mid, .par-city {
+    animation: none !important;
+  }
+  .l-steam1 { opacity: 0; }
+}
+html[data-motion="off"] .drift-a,
+html[data-motion="off"] .drift-b,
+html[data-motion="off"] .scene-rays,
+html[data-motion="off"] .l-steam0,
+html[data-motion="off"] .l-steam1,
+html[data-motion="off"] .par-far,
+html[data-motion="off"] .par-mid,
+html[data-motion="off"] .par-city {
+  animation: none !important;
+}
+html[data-motion="off"] .l-steam1 { opacity: 0; }
+
+/* Band biru: pohon dan awan pixel di tepi. */
+.band-deco {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  image-rendering: pixelated;
+  pointer-events: none;
+}
+.band-tree-r { background-image: url("/scene/band-tree-r-day.png"); }
+.band-tree-l { background-image: url("/scene/band-tree-l-day.png"); }
+.band-cloud { background-image: url("/scene/band-cloud-day.png"); }
+:root[data-theme="dark"] .band-tree-r { background-image: url("/scene/band-tree-r-night.png"); }
+:root[data-theme="dark"] .band-tree-l { background-image: url("/scene/band-tree-l-night.png"); }
+:root[data-theme="dark"] .band-cloud { background-image: url("/scene/band-cloud-night.png"); }
+
+@keyframes hero-in {
+  from { transform: translateY(14px); opacity: 0.2; }
+  to { transform: none; opacity: 1; }
+}
+.hero-in {
+  animation: hero-in 600ms cubic-bezier(0.23, 1, 0.32, 1) both;
+  animation-delay: calc(var(--i, 0) * 90ms);
+}
+@media (prefers-reduced-motion: reduce) { .hero-in { animation: none; } }
+html[data-motion="off"] .hero-in { animation: none; }
+
+/* Adegan di dalam kartu kecil: tanpa parallax, awan diam. */
+.scene-static .par-far,
+.scene-static .par-mid,
+.scene-static .par-city,
+.scene-static .drift-a,
+.scene-static .drift-b {
+  animation: none !important;
+}
+
+.scene-card .scene-layer {
+  background-size: auto 100%;
+  background-position: 88% 100%;
+}

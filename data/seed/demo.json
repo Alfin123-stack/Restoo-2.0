@@ -1,0 +1,84 @@
+[
+  {
+    "placeId": "demo-1",
+    "name": "Warung Demo Sederhana",
+    "address": "Example Street No. 1",
+    "city": "Sample City",
+    "categories": ["catering.restaurant"],
+    "openingHours": "Every day 08:00-21:00",
+    "description": "Fictional sample data for trying out the app. A stall serving home-style cooking.",
+    "menus": {
+      "foods": ["Nasi rames", "Ayam goreng", "Sayur asem"],
+      "drinks": ["Es teh", "Jeruk hangat"]
+    },
+    "coordinates": [103.6131, -1.6101],
+    "priceLevel": 1,
+    "tags": ["halal", "wifi"]
+  },
+  {
+    "placeId": "demo-2",
+    "name": "Kopi Demo Senja",
+    "address": "Example Street No. 2",
+    "city": "Sample City",
+    "categories": ["catering.cafe"],
+    "description": "Fictional sample data. A coffee shop with outdoor seating.",
+    "menus": {
+      "foods": ["Roti bakar", "Pisang goreng"],
+      "drinks": ["Kopi susu", "Teh tarik"]
+    },
+    "coordinates": [103.6205, -1.6032],
+    "priceLevel": 2,
+    "tags": ["wifi", "outdoor"],
+    "openingHours": "Mo-Su 10:00-23:00"
+  },
+  {
+    "placeId": "demo-3",
+    "name": "Dapur Demo Nusantara",
+    "address": "Example Street No. 3",
+    "city": "Sample City",
+    "categories": ["catering.restaurant"],
+    "description": "Fictional sample data. Assorted Indonesian dishes for family meals.",
+    "coordinates": [103.6048, -1.6177],
+    "priceLevel": 2,
+    "tags": ["halal", "reservasi"],
+    "openingHours": "Mo-Sa 10:00-22:00; Su 10:00-16:00"
+  },
+  {
+    "placeId": "demo-4",
+    "name": "Sate Demo Pak Eko",
+    "address": "Example Street No. 4",
+    "city": "Another City",
+    "categories": ["catering.fast_food"],
+    "menus": {
+      "foods": ["Sate ayam", "Lontong"],
+      "drinks": ["Es jeruk"]
+    },
+    "coordinates": [103.5981, -1.5934],
+    "priceLevel": 1,
+    "tags": ["halal", "delivery"],
+    "openingHours": "Mo-Su 16:00-24:00"
+  },
+  {
+    "placeId": "demo-5",
+    "name": "Bakso Demo Lestari",
+    "address": "Example Street No. 5",
+    "city": "Another City",
+    "categories": ["catering.restaurant"],
+    "coordinates": [103.6302, -1.6254],
+    "priceLevel": 1,
+    "tags": ["halal", "delivery"],
+    "openingHours": "Mo-Su 09:00-20:00"
+  },
+  {
+    "placeId": "demo-6",
+    "name": "Roti dan Kopi Demo",
+    "address": "Example Street No. 6",
+    "city": "Another City",
+    "categories": ["catering.cafe"],
+    "description": "Fictional sample data. Fresh bread every morning.",
+    "coordinates": [103.6099, -1.5978],
+    "priceLevel": 3,
+    "tags": ["vegetarian", "wifi", "outdoor"],
+    "openingHours": "Mo-Fr 07:00-18:00; Sa-Su 08:00-20:00"
+  }
+]

@@ -1,0 +1,566 @@
+/*
+ * Sistem permukaan Restoo (gaya "mesin halus"): panel pucat dengan bibir putih di dalam,
+ * tepi gelap tipis, dan bingkai luar 4px. Pixel hanya untuk ilustrasi dan tepi transisi.
+ * Nama kelas lama (.px-box, .px-flat, ...) dipertahankan agar komponen tidak ditulis ulang.
+ */
+
+@layer components {
+  :root {
+    --px-ink: var(--edge-dark);
+    --px-fg: var(--c-text);
+    --px-bg: var(--c-card);
+    --px-r: 12px;
+    --px: 4px;
+  }
+
+  /* Panel terangkat (machined frame). */
+  .px-box {
+    background: var(--px-bg);
+    color: var(--px-fg);
+    border-radius: var(--px-r);
+    box-shadow:
+      inset 0 0 0.4px 1.5px rgb(255 255 255 / 0.35),
+      inset 0 2px 0 0 var(--lip),
+      0 0 2px 0 var(--px-ink),
+      0 0 0 4px var(--frame-ring);
+  }
+
+  /* Ringan: chip, badge, tab. Garis tipis tanpa bingkai luar. */
+  .px-flat {
+    background: var(--px-bg);
+    color: var(--px-fg);
+    border-radius: 999px;
+    box-shadow:
+      0 0 0 1px color-mix(in srgb, var(--c-ink) 12%, transparent),
+      inset 0 1px 0 0 var(--lip);
+  }
+
+  .px-inset {
+    background: var(--c-field);
+    color: var(--px-fg);
+    border-radius: 8px;
+    box-shadow: inset 0 1px 3px rgb(0 0 0 / 0.18);
+  }
+
+  /* Input: garis halus, hover menggelap, fokus memberi cincin biru. */
+  .px-field {
+    background-color: var(--c-field);
+    color: var(--px-fg);
+    border-radius: 8px;
+    caret-color: var(--c-focus);
+    box-shadow:
+      0 0 0 1px color-mix(in srgb, var(--c-ink) 14%, transparent),
+      inset 0 1px 2px rgb(0 0 0 / 0.08);
+    transition: box-shadow 140ms ease-out;
+  }
+  .px-field:hover:not(:disabled, :focus, :focus-within) {
+    box-shadow:
+      0 0 0 1px color-mix(in srgb, var(--c-ink) 32%, transparent),
+      inset 0 1px 2px rgb(0 0 0 / 0.08);
+  }
+  .px-field:focus,
+  .px-field:focus-within {
+    outline: none;
+    box-shadow:
+      0 0 0 1px var(--c-focus),
+      0 0 0 4px color-mix(in srgb, var(--c-focus) 24%, transparent),
+      inset 0 1px 2px rgb(0 0 0 / 0.08);
+  }
+  .px-field[aria-invalid="true"] {
+    box-shadow:
+      0 0 0 1px var(--c-pink),
+      0 0 0 4px color-mix(in srgb, var(--c-pink) 24%, transparent);
+  }
+  .px-field:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+  select.px-field {
+    appearance: none;
+    padding-right: 2.75rem;
+    background-image: var(--chev);
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 12px 8px;
+    image-rendering: pixelated;
+  }
+
+  /* Tombol seperti kunci fisik: tinggi 44px, sudut 8px, bibir putih di dalam. */
+  .btn {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0 12px;
+    border-radius: 8px;
+    font-family: var(--font-label);
+    font-size: 15px;
+    font-weight: 460;
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+    user-select: none;
+    transition:
+      background-color 140ms ease-out,
+      box-shadow 140ms ease-out,
+      transform 140ms ease-out;
+  }
+  .btn:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+  .btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+  }
+  .btn-dark {
+    color: rgb(255 255 255 / 0.92);
+    border: 1px solid #383838;
+    background:
+      linear-gradient(rgb(32 32 32 / 0.1), rgb(32 32 32 / 0.1)),
+      linear-gradient(#4f4f4f, rgb(32 32 32 / 0.85));
+    box-shadow:
+      0 0 0 1px rgb(64 64 64 / 0.12),
+      inset 0 2px 0 rgb(255 255 255 / 0.24),
+      inset 0 -0.5px 2px rgb(0 0 0 / 0.25),
+      0 2px 8px rgb(0 0 0 / 0.03),
+      0 3px 4px rgb(0 0 0 / 0.16);
+  }
+  .btn-dark:hover:not(:disabled) {
+    background:
+      linear-gradient(rgb(32 32 32 / 0.2), rgb(32 32 32 / 0.2)),
+      linear-gradient(#4f4f4f, rgb(32 32 32 / 0.85));
+  }
+  :root[data-theme="dark"] .btn-dark {
+    border-color: #4a4a55;
+    background: linear-gradient(#3a3a46, #26262e);
+    color: #fff;
+  }
+  .btn-light {
+    color: #171717;
+    background: #f5f5f2;
+    border: 1px solid rgb(32 32 32 / 0.1);
+    box-shadow:
+      0 2px 3px rgb(0 0 0 / 0.06),
+      inset 0 0 0.4px 1.5px rgb(255 255 255 / 0.35),
+      inset 0 2px 0 #fff;
+  }
+  .btn-light:hover:not(:disabled) {
+    background: #ededea;
+  }
+  .btn-glass {
+    color: #fff;
+    background: rgb(10 20 40 / 0.34);
+    border: 1px solid rgb(255 255 255 / 0.4);
+    backdrop-filter: blur(10px);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.3);
+  }
+  .btn-glass:hover:not(:disabled) {
+    background: rgb(10 20 40 / 0.46);
+  }
+
+  /* Cakram kaca di atas ilustrasi. */
+  .glass {
+    background: linear-gradient(rgb(255 255 255 / 0.1), rgb(255 255 255 / 0.04));
+    backdrop-filter: blur(18px);
+    box-shadow:
+      inset 0 -1px 0 rgb(0 0 0 / 0.12),
+      inset 0 -1px 2px rgb(0 0 0 / 0.1),
+      inset 0 1px 1px rgb(255 255 255 / 0.24);
+  }
+
+
+  /* Kartu restoran/makanan: saat hover naik selangkah dengan bayangan keras, foto zoom bertahap, tag "OPEN" muncul. */
+  .px-card {
+    --px-hard: var(--c-ink);
+    transition:
+      transform 150ms steps(3, end),
+      box-shadow 150ms steps(3, end);
+  }
+  :root[data-theme="dark"] .px-card {
+    --px-hard: rgb(241 239 233 / 0.6);
+  }
+  .px-zoom {
+    transition: transform 260ms steps(5, end);
+  }
+  .px-go {
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+    z-index: 2;
+    padding: 6px 8px 5px;
+    background: var(--c-heading);
+    color: var(--c-card);
+    font-family: var(--font-pixel);
+    font-size: 11px;
+    line-height: 1;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(6px);
+    transition:
+      opacity 120ms steps(2, end),
+      transform 120ms steps(2, end);
+    box-shadow: -2px 0 0 0 var(--c-heading), 2px 0 0 0 var(--c-heading), 0 -2px 0 0 var(--c-heading), 0 2px 0 0 var(--c-heading);
+  }
+  .px-card:focus-within .px-go {
+    opacity: 1;
+    transform: none;
+  }
+  @media (hover: hover) {
+    .px-card:hover,
+    .px-card:focus-within {
+      transform: translate(-4px, -4px);
+      box-shadow:
+        inset 0 0 0.4px 1.5px rgb(255 255 255 / 0.35),
+        inset 0 2px 0 0 var(--lip),
+        0 0 0 4px var(--px-hard),
+        8px 8px 0 4px var(--px-hard);
+    }
+    .px-card:active {
+      transform: translate(0, 0);
+      box-shadow:
+        inset 0 2px 0 0 var(--lip),
+        0 0 0 4px var(--px-hard);
+    }
+    .px-card:hover .px-zoom {
+      transform: scale(1.08);
+    }
+    .px-card:hover .px-go {
+      opacity: 1;
+      transform: none;
+    }
+    .px-card:hover h3 a {
+      text-decoration: underline;
+      text-decoration-thickness: 3px;
+      text-underline-offset: 4px;
+    }
+  }
+  html[data-motion="off"] .px-card,
+  html[data-motion="off"] .px-zoom,
+  html[data-motion="off"] .px-go {
+    transition: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .px-card,
+    .px-zoom,
+    .px-go {
+      transition: none;
+    }
+  }
+
+  /* Tekan dan angkat. */
+  .px-lift {
+    transition:
+      transform 180ms cubic-bezier(0.23, 1, 0.32, 1),
+      box-shadow 180ms ease-out;
+  }
+  .px-lift:hover {
+    transform: translateY(-2px);
+  }
+  .px-lift:active {
+    transform: translateY(0);
+  }
+  .px-press {
+    transition:
+      transform 120ms ease-out,
+      filter 140ms ease-out;
+  }
+  .px-press:hover:not(:disabled) {
+    filter: brightness(0.97);
+  }
+  .px-press:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+
+  /* Mesin gacha: bingkai machined, jendela reel pucat. */
+  .slot-bulbs {
+    height: 6px;
+    border-radius: 3px;
+    background-image: linear-gradient(90deg, var(--c-violet) 50%, transparent 50%);
+    background-size: 24px 100%;
+    background-repeat: repeat-x;
+    opacity: 0.55;
+  }
+  .slot-bulbs[data-spinning="true"] {
+    animation: bulbs-run 0.5s steps(1) infinite;
+  }
+  @keyframes bulbs-run {
+    50% {
+      background-position: 12px 0;
+    }
+  }
+  .slot-window {
+    position: relative;
+    border-radius: 12px;
+    background: var(--c-sky-soft);
+    box-shadow:
+      inset 0 2px 6px rgb(0 0 0 / 0.14),
+      0 0 0 1px color-mix(in srgb, var(--c-ink) 12%, transparent),
+      0 1px 0 var(--lip);
+  }
+  .slot-window::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background: linear-gradient(115deg, rgb(255 255 255 / 0.28) 0 14%, transparent 14%);
+  }
+
+  .pixelated {
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+  }
+
+  /* Sprite sheet: satu baris frame, digerakkan dengan steps(). */
+  .sprite {
+    display: block;
+    flex: none;
+    background-repeat: no-repeat;
+    background-position-x: 0;
+    image-rendering: pixelated;
+    animation-name: sprite-play;
+    animation-timing-function: steps(var(--frames));
+    animation-iteration-count: infinite;
+    animation-duration: var(--dur);
+  }
+  .sprite[data-still="true"] {
+    animation: none;
+  }
+  .sprite[data-once="true"] {
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+  }
+  @keyframes sprite-play {
+    to {
+      background-position-x: var(--sheet-w);
+    }
+  }
+
+  /* Awan bergeser dengan langkah kasar. */
+  @keyframes drift {
+    from {
+      transform: translateX(-120%);
+    }
+    to {
+      transform: translateX(120vw);
+    }
+  }
+  .drift {
+    animation: drift var(--drift-dur, 60s) steps(60) infinite;
+    animation-delay: var(--drift-delay, 0s);
+  }
+
+  @keyframes bob-px {
+    50% {
+      transform: translateY(4px);
+    }
+  }
+  .bob {
+    animation: bob-px 1s steps(2) infinite;
+  }
+
+  @keyframes blink-px {
+    50% {
+      opacity: 0;
+    }
+  }
+  .blink {
+    animation: blink-px 1s steps(1) infinite;
+  }
+
+  @keyframes sway-px {
+    0%,
+    100% {
+      transform: rotate(-4deg);
+    }
+    50% {
+      transform: rotate(4deg);
+    }
+  }
+  .sway {
+    transform-origin: top center;
+    animation: sway-px 1.6s steps(4) infinite;
+  }
+
+  /* Wipe bertangga untuk transisi halaman. */
+  @keyframes wipe-in {
+    from {
+      clip-path: inset(0 100% 0 0);
+    }
+    to {
+      clip-path: inset(0 0 0 0);
+    }
+  }
+  .wipe-in {
+    animation: wipe-in 360ms steps(8) both;
+  }
+
+  /* Skeleton piksel: dasar dither 4px + sapuan bergerak per langkah (steps), bukan mulus. */
+  .px-skeleton {
+    position: relative;
+    overflow: hidden;
+    border-radius: 6px;
+    background-color: var(--skeleton-a);
+    background-image:
+      linear-gradient(45deg, var(--skeleton-b) 25%, transparent 25% 75%, var(--skeleton-b) 75%),
+      linear-gradient(45deg, var(--skeleton-b) 25%, transparent 25% 75%, var(--skeleton-b) 75%);
+    background-size: 8px 8px;
+    background-position: 0 0, 4px 4px;
+  }
+  .px-skeleton::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, var(--skeleton-b), transparent);
+    opacity: 0.9;
+    transform: translateX(-100%);
+    animation: sk-step 1.6s steps(14) infinite;
+  }
+  @keyframes sk-step {
+    to {
+      transform: translateX(100%);
+    }
+  }
+  html[data-motion="off"] .px-skeleton::after {
+    animation: none;
+    display: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .px-skeleton::after {
+      animation: none;
+      display: none;
+    }
+  }
+
+  /* Loader halaman: mangkuk naik-turun per langkah + bar terisi bertahap. */
+  .loader-bob {
+    animation: loader-bob 0.9s steps(2) infinite;
+  }
+  @keyframes loader-bob {
+    50% {
+      transform: translateY(-4px);
+    }
+  }
+  .loader-bar {
+    width: 100%;
+    background-image: repeating-linear-gradient(
+      90deg,
+      var(--c-leaf) 0 8px,
+      var(--c-violet) 8px 16px
+    );
+    clip-path: inset(0 100% 0 0);
+    animation: loader-fill 1.8s steps(12) infinite;
+  }
+  @keyframes loader-fill {
+    to {
+      clip-path: inset(0 0 0 0);
+    }
+  }
+  html[data-motion="off"] .loader-bob,
+  html[data-motion="off"] .loader-bar {
+    animation: none;
+    clip-path: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .loader-bob,
+    .loader-bar {
+      animation: none;
+      clip-path: none;
+    }
+  }
+
+  /* Bar navigasi di atas layar. */
+  .route-progress {
+    height: 4px;
+    background-image: repeating-linear-gradient(90deg, var(--c-leaf) 0 8px, var(--c-violet) 8px 16px);
+    transform-origin: left;
+  }
+  .route-progress[data-state="run"] {
+    animation: route-run 8s steps(24) forwards;
+  }
+  .route-progress[data-state="done"] {
+    transform: scaleX(1);
+    opacity: 0;
+    transition: opacity 400ms steps(4);
+  }
+  @keyframes route-run {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(0.9);
+    }
+  }
+
+  .hero-bg {
+    background: linear-gradient(var(--sky-1), var(--sky-3));
+  }
+  .scene-sky {
+    background-image: linear-gradient(var(--sky-1), var(--sky-2) 40%, var(--sky-3) 75%, var(--sky-4));
+  }
+  .px-bar {
+    background-image: linear-gradient(90deg, var(--c-leaf), var(--c-violet));
+    border-radius: 4px;
+  }
+
+  /* Peta MapLibre: nuansa hangat + marker pixel. */
+  .maplibregl-canvas {
+    filter: var(--map-filter);
+  }
+  .maplibregl-ctrl-group {
+    border-radius: 8px !important;
+    box-shadow: 0 1px 3px rgb(0 0 0 / 0.25) !important;
+    border: 0;
+  }
+
+  /* Teks gelap di atas isian terang (biru pucat, coral, hijau muda). */
+  [class*="--px-bg:var(--color-kunyit"],
+  [class*="--px-bg:var(--color-cabai"],
+  [class*="--px-bg:var(--color-pandan-500"] {
+    --px-fg: #171717;
+  }
+
+  /* Tidak ada glow neon pada sistem ini; kelas lama dibiarkan sebagai no-op. */
+  .glow-pink,
+  .glow-yellow,
+  .flicker,
+  .twinkle {
+    filter: none;
+    animation: none;
+  }
+  .neon-text {
+    color: var(--c-heading);
+  }
+  .card-glow {
+    transition: transform 180ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .cta-lift {
+    filter: none;
+  }
+
+  /* Muncul saat masuk layar. Hanya bergeser; teks tidak pernah disembunyikan. */
+  @keyframes rise-in {
+    from {
+      transform: translateY(12px);
+    }
+    to {
+      transform: none;
+    }
+  }
+  .rise-in {
+    animation: rise-in 600ms cubic-bezier(0.23, 1, 0.32, 1) both;
+    animation-delay: calc(var(--i, 0) * 70ms);
+  }
+  .reveal {
+    animation: rise-in 600ms cubic-bezier(0.23, 1, 0.32, 1) both;
+  }
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: rise-in linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 45%;
+    }
+  }
+}

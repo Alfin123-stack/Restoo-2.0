@@ -1,0 +1,276 @@
+@import "tailwindcss";
+@import "../styles/pixel.css";
+@import "../styles/scene.css";
+
+/* `dark:` follows the Restoo theme switch (data-theme), not the OS setting. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+@theme inline {
+  /* Peran warna; nilainya berubah mengikuti tema (lihat :root dan [data-theme="dark"]).
+     Nama lama (terong, kunyit, ...) dipertahankan sebagai alias supaya komponen tidak perlu ditulis ulang. */
+  --color-terong-900: var(--c-ink);
+  --color-terong-700: var(--c-text-2);
+  --color-terong-500: var(--c-text-3);
+  --color-cabai-600: var(--c-pink);
+  --color-cabai-700: var(--c-pink-text);
+  --color-kunyit-100: var(--c-yellow-soft);
+  --color-kunyit-400: var(--c-yellow);
+  --color-kunyit-500: var(--c-orange);
+  --color-pandan-100: var(--c-teal-soft);
+  --color-pandan-500: var(--c-teal);
+  --color-pandan-700: var(--c-teal-text);
+  --color-langit-100: var(--c-sky-soft);
+  --color-langit-300: var(--c-sky);
+  --color-langit-500: var(--c-violet);
+  --color-krem: var(--c-text);
+  --color-kartu: var(--c-card);
+  --color-malam: var(--c-field);
+  --color-kertas: var(--c-page);
+  --color-footer: var(--c-footer);
+  --color-onink: #ffffff;
+
+  /* Nama baru */
+  --color-canvas: var(--c-page);
+  --color-raised: var(--c-card);
+  --color-panel: var(--c-sky-soft);
+  --color-heading: var(--c-heading);
+  --color-faint: var(--c-text-3);
+  --color-edge: var(--c-edge);
+  --color-sky: var(--c-violet);
+  --color-leaf: var(--c-leaf);
+
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-label: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-eyebrow: "IBM Plex Mono", ui-monospace, monospace;
+  --font-serif: "Instrument Serif", Georgia, serif;
+  --font-pixel: var(--font-departure), "Departure Mono", ui-monospace, monospace;
+}
+
+/* Terang: "Warm paper". Kanvas netral hangat, panel pucat, warna jenuh hanya di ilustrasi. */
+:root {
+  color-scheme: light;
+  --c-ink: #171717;
+  --c-text: #4f4d4c;
+  --c-heading: #4f4d4c;
+  --c-text-2: #646261;
+  --c-text-3: #6f6d6c; /* sedikit lebih gelap dari #8e8c8b agar lolos kontras 4.5:1 */
+  --c-pink: #f35f58; /* koreksi: suka, error, hapus */
+  --c-pink-text: #bf3a34;
+  /* kunyit-* = permukaan "terpilih" (biru sangat pucat); pandan-100 = chip netral; teal hanya status Open */
+  --c-yellow: #dbe8f8;
+  --c-orange: #e3a21a;
+  --c-yellow-soft: #eaf1fb;
+  --c-teal: #8fd49a;
+  --c-teal-soft: #ecece8;
+  --c-teal-text: #4f4d4c;
+  --c-sky-soft: #f1f1ee;
+  --c-sky: #cfe1f6;
+  --c-violet: #1a6fd1;
+  --c-leaf: #549f4b;
+  --c-focus: #1a6fd1;
+  --c-card: #fbfbf8;
+  --c-field: #ffffff;
+  --c-page: #f5f5f2;
+  --c-edge: #e7e7e3;
+  --c-frame: #e8e7e6;
+  --c-footer: #202020;
+  --c-rim: #171717;
+  --c-errbg: #fdeceb;
+  --lip: #ffffff;
+  --edge-dark: rgb(0 0 0 / 0.25);
+  --frame-ring: rgb(232 231 230 / 0.32);
+  --skeleton-a: #e3e3dd;
+  --skeleton-b: #f8f8f5;
+  --map-filter: grayscale(0.35) sepia(0.12) contrast(0.97);
+  --header-bg: rgb(245 245 242 / 0.82);
+  --fringe: #f5f5f2;
+  --band: #1a6fd1;
+  /* Adegan hero (siang) */
+  --sky-1: #2a7de0;
+  --sky-2: #3f8fe8;
+  --sky-3: #6fb0f2;
+  --sky-4: #a9d2f8;
+  --cloud: #ffffff;
+  --cloud-shade: #d6e8fb;
+  --hill-far: #5f9c6d;
+  --grass-1: #6bbd4a;
+  --grass-2: #4f9e3f;
+  --grass-3: #2f7a34;
+  --leaf-1: #2f7a34;
+  --leaf-2: #3f9640;
+  --leaf-3: #1f5a2b;
+  --trunk: #4b3523;
+  --city: #6e8fb8;
+  --glow: rgb(255 255 255 / 0.18);
+}
+
+/* Gelap: warm charcoal + adegan malam (Pasar Malam). */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --c-ink: #111114;
+  --c-text: #f1efe9;
+  --c-heading: #f1efe9;
+  --c-text-2: #cdcac3;
+  --c-text-3: #a4a19b;
+  --c-pink: #f0675f;
+  --c-pink-text: #ff8d86;
+  --c-yellow: #bcd4f5;
+  --c-orange: #f0b43c;
+  --c-yellow-soft: #26344b;
+  --c-teal: #7dd68a;
+  --c-teal-soft: #2a2a33;
+  --c-teal-text: #dcd9d2;
+  --c-sky-soft: #1b1b21;
+  --c-sky: #2f4c78;
+  --c-violet: #7db4ff;
+  --c-leaf: #7dd68a;
+  --c-focus: #9cc6ff;
+  --c-card: #1f1f26;
+  --c-field: #17171c;
+  --c-page: #121216;
+  --c-edge: #2c2c35;
+  --c-frame: #2c2c35;
+  --c-footer: #0b0b0e;
+  --c-rim: #3a3a46;
+  --c-errbg: #3a1716;
+  --lip: rgb(255 255 255 / 0.1);
+  --edge-dark: rgb(0 0 0 / 0.6);
+  --frame-ring: rgb(255 255 255 / 0.05);
+  --skeleton-a: #23232b;
+  --skeleton-b: #2e2e38;
+  --map-filter: invert(0.92) hue-rotate(200deg) saturate(0.6) brightness(0.95) contrast(0.95);
+  --header-bg: rgb(18 18 22 / 0.82);
+  --fringe: #121216;
+  --band: #1c1748;
+  --sky-1: #0e0a2a;
+  --sky-2: #1c1448;
+  --sky-3: #2e2268;
+  --sky-4: #4a2f86;
+  --cloud: #5a4a98;
+  --cloud-shade: #3b2f74;
+  --hill-far: #2a2f5e;
+  --grass-1: #2f6b4a;
+  --grass-2: #234f3f;
+  --grass-3: #17372f;
+  --leaf-1: #1d4a3a;
+  --leaf-2: #2a6048;
+  --leaf-3: #11302a;
+  --trunk: #2a1f2e;
+  --city: #3d3a7a;
+  --glow: rgb(255 190 110 / 0.14);
+}
+
+html {
+  scroll-padding-top: 6rem;
+}
+
+body {
+  background-color: var(--color-kertas);
+  color: var(--color-krem);
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 460;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+}
+
+:root {
+  --chev: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' shape-rendering='crispEdges'%3E%3Cpath d='M0 0h2v2H0zM10 0h2v2h-2zM2 2h2v2H2zM8 2h2v2H8zM4 4h4v2H4z' fill='%234f4d4c'/%3E%3C/svg%3E");
+}
+:root[data-theme="dark"] {
+  --chev: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' shape-rendering='crispEdges'%3E%3Cpath d='M0 0h2v2H0zM10 0h2v2h-2zM2 2h2v2H2zM8 2h2v2H8zM4 4h4v2H4z' fill='%23f1efe9'/%3E%3C/svg%3E");
+}
+
+/* Judul: weight 400, dua nada (tinta lalu abu pudar). Penekanan lewat warna, bukan tebal. */
+@layer base {
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: 0;
+  color: var(--c-heading);
+}
+}
+.tone-2 {
+  color: var(--c-text-3);
+  opacity: 0.85;
+}
+
+.font-label {
+  font-weight: 500;
+}
+.font-eyebrow {
+  font-family: var(--font-eyebrow);
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.font-serif-mark {
+  font-family: var(--font-serif);
+}
+.font-pixel {
+  font-family: var(--font-pixel);
+  font-weight: 400;
+}
+
+:focus-visible {
+  outline: 2px solid var(--c-focus);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: var(--c-sky);
+  color: var(--c-ink);
+}
+
+/* Anti-spam: disembunyikan dari pengguna dan screen reader. */
+.hp-field {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Gerak: matikan lewat preferensi sistem ATAU toggle "Animasi" di footer. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .sprite {
+    animation: none !important;
+    background-position-x: 0 !important;
+  }
+}
+html[data-motion="off"] *,
+html[data-motion="off"] *::before,
+html[data-motion="off"] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+html[data-motion="off"] .reveal,
+html[data-motion="off"] .rise-in {
+  animation: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .rise-in {
+    animation: none !important;
+  }
+}
+html[data-motion="off"] .sprite {
+  animation: none !important;
+  background-position-x: 0 !important;
+}
